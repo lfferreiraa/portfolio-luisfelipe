@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Enviada | Luis Felipe Matias</title>
+    <meta name="description" content="Sua mensagem foi enviada com sucesso.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070d;
+            --card: #0f1628;
+            --line: #1d2942;
+            --text: #eef3ff;
+            --text-soft: #9fb0cf;
+            --brand: #2fe6d3;
+            --brand-2: #69a8ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: "Space Grotesk", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(47, 230, 211, 0.08), transparent 35%),
+                radial-gradient(circle at 85% 15%, rgba(105, 168, 255, 0.1), transparent 35%),
+                linear-gradient(180deg, #05070d 0%, #080d1a 60%, #060914 100%);
+        }
+
+        .card {
+            width: min(560px, 100%);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(15, 22, 40, 0.92);
+            padding: 28px;
+            text-align: center;
+        }
+
+        .badge {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #03131b;
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--brand), var(--brand-2));
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-soft);
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 999px;
+            color: #03131b;
+            text-decoration: none;
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--brand), var(--brand-2));
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <div class="badge">OK</div>
+        <h1>Mensagem enviada com sucesso</h1>
+        <p>Obrigado pelo contato. Vou analisar sua mensagem e te responder em breve.</p>
+        <a href="./index.html">Voltar para o portfólio</a>
+    </main>
+</body>
+</html>
