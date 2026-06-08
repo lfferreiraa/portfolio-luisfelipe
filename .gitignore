@@ -3,6 +3,7 @@ Thumbs.db
 
 .vercel/
 .edge-profile*/
+.vscode/
 
 server.out.log
 server.err.log
