@@ -1,13 +1,13 @@
 :root {
-  --bg: #f3f1f7;
-  --bg-soft: #eeebf4;
-  --panel: rgba(255, 255, 255, 0.78);
-  --line: rgba(17, 17, 17, 0.08);
-  --text: #111111;
-  --muted: #5c5a68;
-  --accent: #625af7;
-  --accent-strong: #4f3fff;
-  --cyan: #21c7ff;
+  --bg: #000000;
+  --bg-soft: #0a0a0a;
+  --panel: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --accent: #7c5dff;
+  --accent-strong: #5a3cff;
+  --cyan: #00d9ff;
   --warm: #ff8f71;
   --max: 1180px;
 }
@@ -408,8 +408,11 @@ button {
 
 .hero__title span {
   display: block;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.14);
+  color: var(--accent);
+  font-size: 0.75em;
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .hero__cta {
@@ -421,13 +424,13 @@ button {
   height: 88px;
   margin: 0 auto;
   border-radius: 999px;
-  background: #111;
+  background: #7c5dff;
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  box-shadow: 0 30px 90px rgba(17, 17, 17, 0.16);
+  box-shadow: 0 30px 90px rgba(124, 93, 255, 0.28);
   transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
   overflow: hidden;
 }
@@ -436,13 +439,14 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(98, 90, 247, 0.25), transparent 58%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), transparent 58%);
   opacity: 0.54;
 }
 
 .hero__cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 34px 120px rgba(17, 17, 17, 0.18);
+  box-shadow: 0 34px 120px rgba(124, 93, 255, 0.38);
+  background: #8a6cff;
 }
 
 .hero__cta span {
