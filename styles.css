@@ -214,7 +214,8 @@ button {
 
 .hero {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(380px, 1fr);
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -232,14 +233,64 @@ button {
   pointer-events: none;
 }
 
+.hero__wrapper {
+  position: relative;
+  display: grid;
+  gap: 48px;
+  align-items: center;
+  justify-items: center;
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  grid-template-columns: 1fr 1.15fr;
+}
+
 .hero__content {
   position: relative;
   display: grid;
-  gap: 22px;
-  max-width: 980px;
+  gap: 24px;
+  max-width: 640px;
   width: 100%;
-  text-align: center;
+  text-align: left;
   z-index: 1;
+}
+
+.hero__text {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.7vw, 1.3rem);
+  line-height: 1.8;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.hero__hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(3.8rem, 8.5vw, 5.8rem);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: none;
+}
+
+.hero__title span {
+  display: block;
+  color: var(--accent);
+  font-size: 0.75em;
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .hero__wrapper {
@@ -934,7 +985,8 @@ body {
 
 @media (max-width: 980px) {
   .site-header {
-    grid-template-columns: 1fr auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .header-mail {
@@ -972,9 +1024,30 @@ body {
 
   .hero {
     grid-template-columns: 1fr;
-    align-items: end;
+    align-items: center;
     min-height: 100vh;
     padding-top: 92px;
+  }
+
+  .hero__wrapper {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__title {
+    font-size: clamp(3.2rem, 11vw, 5rem);
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__avatar {
+    width: min(220px, 45vw);
   }
 
   .hero__copy--left {
