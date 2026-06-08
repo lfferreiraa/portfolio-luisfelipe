@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+
+.vercel/
+.edge-profile*/
+
+server.out.log
+server.err.log
+edge-headless.err
