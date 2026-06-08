@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfólio de Luis Felipe Matias, desenvolvedor front-end focado em interfaces, landing pages e páginas de venda orientadas a resultado."
+    />
+    <title>Luis Felipe Matias | Desenvolvedor Front-end</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="loader" aria-hidden="true">
+      <div class="loader__marquee">
+        <span>FRONT-END DEVELOPER</span>
+        <span>UI/UX STRATEGY</span>
+        <span>LANDING PAGES</span>
+        <span>WEB EXPERIENCES</span>
+      </div>
+      <div class="loader-wrap">
+        <div class="loader-hover"></div>
+        <button class="loader-button" disabled>
+          <span class="loader-button-text">LOADING</span>
+          <span class="loader__count">0%</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Ir para o início">luisfelipe.dev</a>
+      <div class="header-actions">
+        <a class="header-mail" href="mailto:luisfelmatias@gmail.com">luisfelmatias@gmail.com</a>
+        <div class="header-barset" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="hero__wrapper" data-reveal>
+          <div class="hero__avatar-placeholder" aria-hidden="true"></div>
+          <div class="hero__avatar" aria-hidden="true">
+            <img src="assets/avatar.png" alt="Avatar de Luis Felipe" />
+            <div class="hero__avatar-ring"></div>
+          </div>
+
+          <div class="hero__content">
+            <p class="hero__eyebrow">Creative Developer</p>
+            <h1 class="hero__title">
+              Hi, I’m Luis Felipe <span>Front-end developer</span>
+            </h1>
+            <div class="hero__meta">
+              <span class="hero__meta-label">A</span>
+              <div class="hero__meta-list">
+                <div class="hero__meta-track">
+                  <span>Creative Developer</span>
+                  <span>Interface Designer</span>
+                  <span>Landing Page Specialist</span>
+                </div>
+              </div>
+            </div>
+            <p class="hero__text">
+              I build landing pages and brand-led websites focused on clarity, performance, and conversion.
+            </p>
+            <div class="hero__actions">
+              <a class="hero__cta" href="#about"><span>Let's talk</span></a>
+              <span class="hero__hint">Available for freelance</span>
+            </div>
+          </div>
+        </div>
+        <a class="scroll-indicator" href="#about">Scroll</a>
+      </section>
+
+      <section class="about section" id="about">
+        <div class="section-heading" data-reveal>
+          <span>01</span>
+          <h2>Sobre mim</h2>
+        </div>
+
+        <div class="about__grid">
+          <div class="about__intro" data-reveal>
+            <p>
+              Sou Luis Felipe Matias, desenvolvedor front-end. Meu foco é diagnosticar gargalos, simplificar jornadas e construir páginas que geram resultado real para o negócio.
+            </p>
+            <p>
+              Combino visão de produto, experiência do usuário e desenvolvimento front-end para resolver problemas concretos com páginas rápidas e orientadas a resultado.
+            </p>
+          </div>
+
+          <div class="about__cards" data-reveal>
+            <article>
+              <span>Foco</span>
+              <strong>Problema certo + solução eficiente</strong>
+            </article>
+            <article>
+              <span>Especialidade</span>
+              <strong>Landing Pages e Portfólios</strong>
+            </article>
+            <article>
+              <span>Stack base</span>
+              <strong>HTML • CSS • JavaScript</strong>
+            </article>
+          </div>
+        </div>
+
+        <div class="timeline" aria-label="Experiência e formação">
+          <article data-reveal>
+            <div>
+              <h3>Desenvolvedor Front-end</h3>
+              <span>Freelancer</span>
+            </div>
+            <strong>NOW</strong>
+            <p>
+              Desenvolvimento de sites, páginas de venda e portfólios com arquitetura clara, navegação fluida e foco em conversão.
+            </p>
+          </article>
+          <article data-reveal>
+            <div>
+              <h3>Ciência de Dados</h3>
+              <span>UNIFEI</span>
+            </div>
+            <strong>CURSO</strong>
+            <p>
+              Formação que fortalece minha visão analítica para construir soluções digitais mais inteligentes e orientadas por dados.
+            </p>
+          </article>
+          <article data-reveal>
+            <div>
+              <h3>Cibersegurança</h3>
+              <span>Boas práticas</span>
+            </div>
+            <strong>BASE</strong>
+            <p>
+              Conhecimento básico aplicado na estrutura do front-end, com atenção a riscos, clareza técnica e responsabilidade.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="services section" id="services">
+        <div class="section-heading" data-reveal>
+          <span>02</span>
+          <h2>Serviços</h2>
+        </div>
+
+        <div class="services__grid">
+          <article data-reveal>
+            <span>01</span>
+            <h3>Desenvolvimento Front-end</h3>
+            <p>
+              Construção de sites e páginas de venda orientados por objetivo, com código pronto para evoluir.
+            </p>
+          </article>
+          <article data-reveal>
+            <span>02</span>
+            <h3>UI/UX orientado a problema</h3>
+            <p>
+              Interfaces desenhadas para reduzir dúvidas, guiar decisão e melhorar conversão com base no comportamento do usuário.
+            </p>
+          </article>
+          <article data-reveal>
+            <span>03</span>
+            <h3>Responsividade Avançada</h3>
+            <p>
+              Layouts adaptáveis para desktop e mobile, mantendo consistência visual, performance e leitura confortável.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="work section" id="projects">
+        <div class="section-heading" data-reveal>
+          <span>03</span>
+          <h2>Projetos</h2>
+        </div>
+
+        <div class="work__intro" data-reveal>
+          <p>
+            Três projetos focados em aquisição, confiança e conversão com páginas de venda de alto impacto.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card project-card--large" data-reveal>
+            <a class="project-card__media" href="https://mathias-imoveis-opal.vercel.app/" target="_blank" rel="noreferrer" aria-label="Abrir demo do projeto Mathias Imóveis">
+              <img src="assets/mathias-imoveis.png" alt="Screenshot do projeto Mathias Imóveis em desktop" />
+            </a>
+            <div class="project-card__body">
+              <span class="project-number">01</span>
+              <div>
+                <p>IMOBILIÁRIA</p>
+                <h3>Mathias Imóveis</h3>
+              </div>
+              <p>
+                Site de vendas para imobiliária com proposta visual premium e foco em apresentação de serviços e autoridade.
+              </p>
+              <div class="project-card__footer">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <a href="https://github.com/lfferreiraa/mathias-imoveis" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://mathias-imoveis-opal.vercel.app/" target="_blank" rel="noreferrer">Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__body">
+              <span class="project-number">02</span>
+              <div>
+                <p>WEB APP SALES</p>
+                <h3>Peptídeos</h3>
+              </div>
+              <p>
+                Página de venda de web app com comunicação direta, identidade forte e estrutura orientada a conversão.
+              </p>
+            </div>
+            <a class="project-card__media" href="https://peptideos-cyan.vercel.app/" target="_blank" rel="noreferrer" aria-label="Abrir demo do projeto Peptídeos">
+              <img src="assets/peptideos.png" alt="Screenshot do projeto Peptídeos em desktop" />
+            </a>
+            <div class="project-card__footer">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <a href="https://github.com/lfferreiraa/peptideos" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://peptideos-cyan.vercel.app/" target="_blank" rel="noreferrer">Demo</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <a class="project-card__media" href="https://biosystem.vercel.app/" target="_blank" rel="noreferrer" aria-label="Abrir demo do projeto Biosystem">
+              <img src="assets/biosystem.png" alt="Screenshot do projeto Biosystem em desktop" />
+            </a>
+            <div class="project-card__body">
+              <span class="project-number">03</span>
+              <div>
+                <p>E-BOOK SALES</p>
+                <h3>Biosystem</h3>
+              </div>
+              <p>
+                Página de venda de e-book com linguagem de alta performance, visual tecnológico e destaque para proposta de valor.
+              </p>
+            </div>
+            <div class="project-card__footer">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <a href="https://github.com/lfferreiraa/biosystem" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://biosystem.vercel.app/" target="_blank" rel="noreferrer">Demo</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="stack section" aria-label="Minhas habilidades">
+        <div class="stack__track" data-reveal>
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>React</span>
+          <span>Git</span>
+          <span>Figma</span>
+          <span>Vercel</span>
+          <span>UX/UI</span>
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>React</span>
+        </div>
+      </section>
+
+      <section class="contact section" id="contact">
+        <div class="section-heading" data-reveal>
+          <span>04</span>
+          <h2>Contato</h2>
+        </div>
+
+        <div class="contact__grid">
+          <div class="contact__copy" data-reveal>
+            <p>Vamos tirar seu projeto do papel</p>
+            <h2>Landing page, portfólio ou página de venda com visual profissional e foco em resultado.</h2>
+          </div>
+          <div class="contact__links" data-reveal>
+            <a href="mailto:luisfelmatias@gmail.com">luisfelmatias@gmail.com</a>
+            <a href="tel:+5535988498810">(35) 98849-8810</a>
+            <span>Itajubá, Brasil</span>
+            <a class="contact__cta" href="mailto:luisfelmatias@gmail.com">Enviar mensagem</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Luis Felipe Matias. Todos os direitos reservados.</p>
+      <a href="#home">Voltar ao topo</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
