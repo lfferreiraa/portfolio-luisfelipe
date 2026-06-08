@@ -11,7 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -24,9 +28,12 @@
         <span>LANDING PAGES</span>
         <span>WEB EXPERIENCES</span>
       </div>
-      <div class="loader__pill">
-        <span>LOADING</span>
-        <span class="loader__count">0%</span>
+      <div class="loader-wrap">
+        <div class="loader-hover"></div>
+        <button class="loader-button" disabled>
+          <span class="loader-button-text">LOADING</span>
+          <span class="loader__count">0%</span>
+        </button>
       </div>
     </div>
 
