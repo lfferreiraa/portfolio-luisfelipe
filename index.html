@@ -5,251 +5,856 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Portfólio de Luis Ferreira — programação e dados." />
   <title>Luis Ferreira — Programação e dados</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:ital,wght@0,600;1,600;1,700&display=swap');
 
-    :root { --paper:#f2f0eb; --ink:#11110f; --night:#11120f; --acid:#c9fa3b; --line:rgba(17,17,15,.18); --mono:"DM Mono", monospace; --sans:"DM Sans", Arial, sans-serif; --serif:"Playfair Display", Georgia, serif; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); overflow-x:hidden; }
-    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.22; z-index:30; background-image:radial-gradient(rgba(17,17,15,.2) .45px, transparent .55px); background-size:5px 5px; mix-blend-mode:multiply; }
-    a { color:inherit; text-decoration:none; }
-    .wrap { width:min(1400px, calc(100% - 64px)); margin:auto; }
-    .nav { min-height:78px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); font:12px var(--mono); text-transform:uppercase; letter-spacing:.04em; }
-    .nav, main, footer { position:relative; z-index:1; }
-    .brand { font-weight:500; }
-    .nav-links { display:flex; gap:28px; }
-    .nav a { transition:color .2s ease; }
-    .nav a:hover { color:#699000; }
-    .hero { min-height:calc(100vh - 78px); padding:80px 0 48px; display:flex; flex-direction:column; justify-content:space-between; position:relative; isolation:isolate; }
-    .hero > div:first-child, .project-jump { position:relative; z-index:2; }
-    .hero-sculpture { position:absolute; right:2%; bottom:10%; width:min(30vw,390px); aspect-ratio:1; z-index:1; pointer-events:none; }
-    .hero-sculpture .orbit { position:absolute; inset:4%; border:1px solid var(--ink); border-radius:50%; animation:heroOrbit 12s linear infinite; }
-    .hero-sculpture .orbit::after { content:""; position:absolute; width:14%; aspect-ratio:1; border-radius:50%; background:var(--acid); top:1%; left:22%; box-shadow:0 0 0 9px var(--paper); }
-    .hero-sculpture .block { position:absolute; width:46%; aspect-ratio:1; background:var(--ink); right:4%; top:26%; transform:rotate(21deg); animation:heroBlock 5s cubic-bezier(.7,0,.2,1) infinite alternate; }
-    .hero-sculpture .block::after { content:"DATA"; color:var(--acid); font:11px var(--mono); position:absolute; inset:13px; writing-mode:vertical-rl; }
-    .hero-sculpture .disc { position:absolute; width:41%; aspect-ratio:1; border-radius:50%; background:#ef5c31; left:11%; bottom:9%; mix-blend-mode:multiply; animation:heroDisc 4.3s ease-in-out infinite alternate; }
-    .hero-sculpture .line { position:absolute; width:120%; height:1px; background:var(--ink); left:-10%; top:51%; transform:rotate(-24deg); }
-    @keyframes heroOrbit { to { transform:rotate(360deg); } }
-    @keyframes heroBlock { to { transform:rotate(121deg) scale(.78); border-radius:48%; } }
-    @keyframes heroDisc { to { transform:translate(46%, -31%) scale(.72); background:#3b54cf; } }
-    .eyebrow, .section-kicker, .meta, .facts dt, .small-link { font:11px var(--mono); letter-spacing:.045em; text-transform:uppercase; }
-    .eyebrow { display:flex; align-items:center; gap:10px; opacity:.74; }
-    .eyebrow::before { content:""; width:8px; height:8px; background:var(--acid); border-radius:50%; }
-    h1 { max-width:1050px; margin:48px 0 30px; font-size:clamp(4rem, 10.2vw, 10rem); line-height:.84; letter-spacing:-.085em; font-weight:700; }
-    h1 em { font-family:var(--serif); font-weight:600; letter-spacing:-.1em; }
-    .intro { max-width:525px; margin:0; font-size:clamp(1.15rem, 1.7vw, 1.55rem); line-height:1.35; letter-spacing:-.035em; }
-    .project-jump { align-self:flex-end; margin-top:42px; font:12px var(--mono); border-bottom:1px solid var(--ink); padding-bottom:5px; }
-    .project-jump:hover { color:#587900; border-color:#587900; }
-    .ticker { overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); white-space:nowrap; background:var(--acid); }
-    .ticker-track { display:flex; width:max-content; animation:ticker 22s linear infinite; }
-    .ticker span { padding:17px 19px; font:14px var(--mono); letter-spacing:.03em; }
-    @keyframes ticker { to { transform:translateX(-50%); } }
-    .listening { padding:76px 0 0; }
-    .listening-head { display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:20px; }
-    .listening-note { max-width:335px; margin:0; font:12px/1.4 var(--mono); opacity:.65; text-align:right; }
-    .track-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
-    .track-card { background:var(--ink); padding:12px; min-width:0; transition:transform .3s cubic-bezier(.2,.8,.2,1); }
-    .track-card:hover { transform:translateY(-6px); }
-    .track-label { display:flex; justify-content:space-between; color:var(--acid); margin-bottom:11px; font:10px var(--mono); letter-spacing:.05em; text-transform:uppercase; }
-    .track-card iframe { display:block; width:100%; height:152px; border:0; border-radius:8px; }
-    .projects { padding:118px 0 135px; }
-    .section-kicker { margin-bottom:45px; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
-    .card { min-width:0; display:flex; flex-direction:column; position:relative; border:1px solid var(--line); background:#ebe9e3; transform:perspective(850px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px)); transition:transform .22s ease-out, box-shadow .35s; }
-    .card:hover { box-shadow:9px 10px 0 var(--ink); }
-    .art { height:clamp(240px, 31vw, 430px); position:relative; overflow:hidden; background:#d9d8d0; display:grid; place-items:center; transition:filter .35s ease; }
-    .card:hover .art { filter:saturate(1.25) contrast(1.07); }
-    .card::before { content:""; position:absolute; inset:0; z-index:3; pointer-events:none; background:linear-gradient(115deg, transparent 24%, rgba(255,255,255,.38) 46%, transparent 62%); transform:translateX(-150%); }
-    .card:hover::before { animation:cardGlint .8s ease; }
-    @keyframes cardGlint { to { transform:translateX(150%); } }
-    .scroll-meter { height:4px; background:var(--acid); position:fixed; top:0; left:0; width:100%; transform:scaleX(0); transform-origin:left; z-index:20; pointer-events:none; }
-    .global-scene { position:fixed; width:170px; height:170px; right:-74px; top:15vh; z-index:0; pointer-events:none; perspective:800px; opacity:.33; mix-blend-mode:exclusion; will-change:transform; }
-    .global-cube { position:absolute; inset:0; transform-style:preserve-3d; will-change:transform; }
-    .global-cube i { position:absolute; inset:0; display:block; overflow:hidden; border:2px solid var(--acid); background:repeating-linear-gradient(180deg, rgba(201,250,59,.13) 0 1px, transparent 1px 13px), rgba(201,250,59,.13); box-shadow:inset 0 0 34px rgba(201,250,59,.32); }
-    .global-cube i::after { content:attr(data-code); position:absolute; top:13px; left:11px; color:var(--acid); font:9px/1.45 var(--mono); letter-spacing:.03em; white-space:pre-wrap; opacity:.9; }
-    .global-cube i:nth-child(1) { transform:translateZ(95px); }
-    .global-cube i:nth-child(2) { transform:rotateY(180deg) translateZ(95px); }
-    .global-cube i:nth-child(3) { transform:rotateY(90deg) translateZ(95px); }
-    .global-cube i:nth-child(4) { transform:rotateY(-90deg) translateZ(95px); }
-    .global-cube i:nth-child(5) { transform:rotateX(90deg) translateZ(95px); }
-    .global-cube i:nth-child(6) { transform:rotateX(-90deg) translateZ(95px); }
-    .cursor-dot, .cursor-ring { display:none; pointer-events:none; position:fixed; z-index:100; left:0; top:0; border-radius:50%; opacity:0; }
-    .art::after { content:""; position:absolute; border:1px solid rgba(17,17,15,.5); width:65%; aspect-ratio:1; border-radius:50%; }
-    .rag { background:#c9fa3b; }
-    .rag b { font:bold clamp(5rem, 12vw, 11rem)/1 var(--sans); letter-spacing:-.12em; z-index:1; animation:ragText 4.6s cubic-bezier(.45,0,.3,1) infinite alternate; }
-    .rag::before { content:""; position:absolute; background:var(--ink); width:36%; height:36%; border-radius:50%; right:10%; top:12%; animation:ragDot 4.6s cubic-bezier(.45,0,.3,1) infinite alternate; }
-    @keyframes ragText { to { transform:translate(-5%, 7%) rotate(-5deg); } }
-    @keyframes ragDot { to { transform:translate(-64%, 74%) scale(.64); } }
-    .peptides { background:#3b54cf; }
-    .peptides::before { content:""; position:absolute; width:58%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 34% 32%, #fcff6e 0 5%, #fd6269 21%, #e363dc 42%, #79dfd1 70%, #0e1c57 100%); box-shadow:32px 31px 0 #f1ed75; z-index:1; animation:orb 7s ease-in-out infinite alternate; }
-    .peptides::after { width:92%; border-color:rgba(255,255,255,.65); }
-    @keyframes orb { to { transform:rotate(24deg) scale(1.11); } }
-    .aed { background:#ef5c31; }
-    .aed b { position:relative; z-index:1; color:#f2f0eb; font:bold clamp(4rem, 10vw, 9rem)/.8 var(--serif); letter-spacing:-.12em; transform:rotate(-8deg); animation:aedType 4s ease-in-out infinite alternate; }
-    .aed::before { content:""; position:absolute; height:1px; width:140%; background:var(--ink); transform:rotate(-32deg); box-shadow:0 70px 0 var(--ink), 0 -70px 0 var(--ink); animation:aedLines 4s ease-in-out infinite alternate; }
-    @keyframes aedType { to { transform:rotate(6deg) scale(1.08); } }
-    @keyframes aedLines { to { transform:rotate(-21deg) translateX(5%); } }
-    .database { background:#f4d554; }
-    .database b { position:relative; z-index:1; font:bold clamp(3.7rem, 9vw, 8rem)/.78 var(--sans); letter-spacing:-.12em; animation:sqlType 3.7s ease-in-out infinite alternate; }
-    .database::before { content:""; position:absolute; width:58%; height:23%; border:2px solid var(--ink); border-radius:50%; transform:translateY(-72px); box-shadow:0 72px 0 -2px #f4d554, 0 72px 0 0 var(--ink), 0 144px 0 -2px #f4d554, 0 144px 0 0 var(--ink); animation:databaseStack 3.7s ease-in-out infinite alternate; }
-    @keyframes sqlType { to { transform:translateY(-11px); } }
-    @keyframes databaseStack { to { transform:translateY(-53px) scaleX(.85); } }
-    .biosystem { background:#1c6e5a; }
-    .biosystem b { position:relative; z-index:2; color:var(--paper); font:600 clamp(2.6rem, 6vw, 5.6rem)/.85 var(--serif); font-style:italic; letter-spacing:-.1em; animation:bioText 5s ease-in-out infinite alternate; }
-    .biosystem::before { content:""; position:absolute; width:88%; aspect-ratio:1; border-radius:48% 52% 41% 59%; border:1px solid var(--acid); transform:rotate(38deg); animation:bioShape 7s ease-in-out infinite alternate; }
-    .biosystem::after { border-color:rgba(201,250,59,.75); width:43%; animation:bioCore 5s ease-in-out infinite alternate; }
-    @keyframes bioText { to { transform:translateY(-8px) rotate(-3deg); } }
-    @keyframes bioShape { to { transform:rotate(112deg) scale(.88); border-radius:58% 42% 60% 40%; } }
-    @keyframes bioCore { to { transform:scale(1.72); opacity:.28; } }
-    .card-info { padding:19px 19px 22px; display:flex; flex-direction:column; flex:1; }
-    .meta { opacity:.64; margin-bottom:33px; }
-    .card h3 { font-size:clamp(1.5rem, 2.2vw, 2.05rem); line-height:1; letter-spacing:-.06em; margin:0 0 12px; }
-    .card p { max-width:330px; margin:0; font-size:.95rem; line-height:1.35; letter-spacing:-.02em; }
-    .arrow { margin-top:auto; padding-top:28px; font:20px var(--mono); }
-    .about { color:#f2f0eb; background:var(--night); padding:118px 0 110px; }
-    .about-grid { display:grid; grid-template-columns:2fr 1fr; gap:10%; }
-    .about .section-kicker { color:var(--acid); grid-column:1/-1; }
-    .about-copy { margin:0; max-width:930px; font-size:clamp(2.25rem, 5.2vw, 5.5rem); line-height:.95; letter-spacing:-.075em; }
-    .highlight { color:var(--acid); font-family:var(--serif); font-style:italic; font-weight:600; }
-    .facts { margin:10px 0 0; border-top:1px solid rgba(242,240,235,.35); }
-    .facts div { padding:15px 0; border-bottom:1px solid rgba(242,240,235,.35); }
-    .facts dt { color:var(--acid); margin-bottom:8px; }
-    .facts dd { margin:0; font-size:1rem; letter-spacing:-.02em; }
-    .skills { grid-column:1/-1; margin-top:55px; display:flex; flex-wrap:wrap; gap:8px; }
-    .skills span { padding:8px 10px; border:1px solid rgba(242,240,235,.3); border-radius:999px; font:11px var(--mono); }
-    footer { padding:32px 0 40px; }
-    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
-    .footer-title { font:11px var(--mono); text-transform:uppercase; }
-    .github { display:block; margin:64px 0 70px; font-size:clamp(2.3rem, 7.3vw, 7.5rem); line-height:.83; letter-spacing:-.085em; border-bottom:2px solid var(--ink); padding-bottom:10px; width:max-content; max-width:100%; transition:color .25s, padding-left .3s; }
-    .github:hover { color:#608400; padding-left:12px; }
-    .footer-links { border-top:1px solid var(--line); padding-top:16px; display:flex; gap:25px; font:11px var(--mono); text-transform:uppercase; }
-    .reveal { opacity:0; transform:translateY(32px); }
-    .js-ready .reveal { will-change:transform,opacity; }
-    .card.reveal { transform:perspective(850px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(calc(var(--lift, 0px) + var(--enter-y, 32px))); }
-    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; } .scroll-meter,.global-scene { display:none; } }
-    @media (pointer:fine) { body, a, button { cursor:none; } .cursor-dot, .cursor-ring { display:block; } .cursor-dot { width:7px; height:7px; background:var(--acid); mix-blend-mode:multiply; } .cursor-ring { width:31px; height:31px; border:1px solid var(--ink); transition:width .25s ease, height .25s ease, background .25s ease, border-color .25s ease; } .cursor-ring.is-active { width:52px; height:52px; background:var(--acid); border-color:var(--acid); mix-blend-mode:multiply; } }
-    @media (max-width:760px) { .wrap { width:min(100% - 32px, 1400px); } .nav { min-height:62px; } .nav-links { gap:14px; } .global-scene { width:115px; height:115px; right:-50px; top:43vh; opacity:.35; } .global-cube i:nth-child(1) { transform:translateZ(57px); } .global-cube i:nth-child(2) { transform:rotateY(180deg) translateZ(57px); } .global-cube i:nth-child(3) { transform:rotateY(90deg) translateZ(57px); } .global-cube i:nth-child(4) { transform:rotateY(-90deg) translateZ(57px); } .global-cube i:nth-child(5) { transform:rotateX(90deg) translateZ(57px); } .global-cube i:nth-child(6) { transform:rotateX(-90deg) translateZ(57px); } .hero { min-height:calc(100svh - 62px); padding:53px 0 30px; } .hero-sculpture { width:230px; right:-48px; bottom:60px; opacity:.72; } h1 { margin:42px 0 26px; font-size:clamp(3.7rem, 19vw, 6.5rem); } .project-jump { align-self:flex-start; } .listening { padding-top:55px; } .listening-head { display:block; } .listening-note { text-align:left; margin-top:12px; } .track-grid { grid-template-columns:1fr; } .projects,.about { padding:78px 0; } .cards { grid-template-columns:1fr; gap:22px; } .art { height:310px; } .about-grid { grid-template-columns:1fr; gap:42px; } .about .section-kicker { margin-bottom:0; } .skills { margin-top:5px; } .footer-top { display:block; } .github { margin:51px 0 56px; font-size:clamp(2.25rem, 12vw, 5rem); } }
+  <!-- Typography & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- CDN Libraries: Three.js & GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root { 
+      --paper: #0a0b08; /* Fundo Preto Terminal */
+      --ink: #f2f0eb;   /* Texto Claro */
+      --night: #141512; /* Variação de Preto/Cinza Escuro */
+      --acid: #c9fa3b;  /* Verde Ácido Neon */
+      --blue: #3b54cf;
+      --orange: #ef5c31;
+      --line: rgba(242, 240, 235, 0.12); /* Borda sutil e nítida */
+      --mono: "DM Mono", monospace; 
+      --sans: "DM Sans", Arial, sans-serif; 
+      --serif: "Playfair Display", Georgia, serif; 
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+      margin: 0; 
+      background: var(--paper); 
+      color: var(--ink); 
+      font-family: var(--sans); 
+      overflow-x: hidden; 
+      width: 100%;
+    }
+
+    /* --- PRELOADER --- */
+    .loader-screen {
+      position: fixed;
+      inset: 0;
+      background: #050604;
+      color: var(--ink);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(20px, 4vw, 40px);
+      overflow: hidden;
+    }
+    #loader-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.7;
+    }
+    .loader-terminal {
+      position: relative;
+      z-index: 2;
+      font: 11px/1.6 var(--mono);
+      color: var(--acid);
+      max-width: 650px;
+      text-shadow: 0 0 8px rgba(201, 250, 59, 0.4);
+    }
+    .loader-terminal span {
+      display: block;
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    .loader-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font: 12px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .loader-brand {
+      color: var(--ink);
+      opacity: .8;
+      margin-bottom: 6px;
+    }
+    .loader-counter {
+      font-size: clamp(3rem, 10vw, 9rem);
+      color: var(--acid);
+      font-weight: 700;
+      line-height: .8;
+      letter-spacing: -.05em;
+      text-shadow: 0 0 20px rgba(201, 250, 59, 0.2);
+    }
+
+    /* Textura de Fundo Escura */
+    body::before { 
+      content: ""; 
+      position: fixed; 
+      inset: 0; 
+      pointer-events: none; 
+      opacity: .08; 
+      z-index: 30; 
+      background-image: radial-gradient(rgba(255,255,255,.4) .45px, transparent .55px); 
+      background-size: 5px 5px; 
+    }
+
+    /* WebGL Background 3D Canvas */
+    #webgl-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { 
+      width: min(1400px, calc(100% - 40px)); 
+      margin: auto; 
+    }
+    
+    .nav { 
+      min-height: 78px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      border-bottom: 1px solid var(--line); 
+      font: 12px var(--mono); 
+      text-transform: uppercase; 
+      letter-spacing: .04em; 
+    }
+    .nav, main, footer { position: relative; z-index: 2; }
+    
+    .brand { font-weight: 500; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav a { transition: color .2s ease; padding: 4px 0; }
+    .nav a:hover { color: var(--acid); }
+
+    .hero { 
+      min-height: calc(100vh - 78px); 
+      padding: clamp(40px, 8vw, 80px) 0 48px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      position: relative; 
+    }
+    .hero > div:first-child, .project-jump { position: relative; z-index: 2; }
+
+    .eyebrow, .section-kicker, .meta, .facts dt, .small-link { font: 11px var(--mono); letter-spacing: .045em; text-transform: uppercase; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; opacity: .85; color: var(--acid); }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--acid); border-radius: 50%; box-shadow: 0 0 8px var(--acid); }
+
+    h1 { 
+      max-width: 1050px; 
+      margin: 32px 0 24px; 
+      font-size: clamp(2.8rem, 8vw, 8.5rem); 
+      line-height: .9; 
+      letter-spacing: -.06em; 
+      font-weight: 700; 
+      word-wrap: break-word;
+    }
+    h1 em { font-family: var(--serif); font-weight: 600; letter-spacing: -.08em; color: var(--acid); }
+    
+    .intro { max-width: 525px; margin: 0; font-size: clamp(1.05rem, 1.5vw, 1.4rem); line-height: 1.4; letter-spacing: -.02em; opacity: .85; }
+    
+    .project-jump { align-self: flex-end; margin-top: 32px; font: 12px var(--mono); border-bottom: 1px solid var(--ink); padding-bottom: 5px; transition: all .2s; }
+    .project-jump:hover { color: var(--acid); border-color: var(--acid); }
+
+    /* Ticker */
+    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); white-space: nowrap; background: var(--acid); color: #0a0b08; position: relative; z-index: 2; font-weight: 500; }
+    .ticker-track { display: flex; width: max-content; animation: ticker 22s linear infinite; }
+    .ticker span { padding: 15px 19px; font: 13px var(--mono); letter-spacing: .03em; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* Spotify */
+    .listening { padding: clamp(48px, 6vw, 76px) 0 0; position: relative; z-index: 2; }
+    .listening-head { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; margin-bottom: 20px; }
+    .listening-note { max-width: 335px; margin: 0; font: 12px/1.4 var(--mono); opacity: .65; text-align: right; }
+    
+    .track-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .track-card { background: #141512; padding: 12px; min-width: 0; border: 1px solid var(--line); border-radius: 6px; transition: transform .3s ease, border-color .3s ease; }
+    .track-card:hover { transform: translateY(-4px); border-color: var(--acid); }
+    .track-label { display: flex; justify-content: space-between; color: var(--acid); margin-bottom: 11px; font: 10px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .track-card iframe { display: block; width: 100%; height: 152px; border: 0; border-radius: 6px; }
+
+    /* --- PROJETOS & CARDS (CORREÇÃO DE BORDAS) --- */
+    .projects { padding: clamp(60px, 8vw, 118px) 0 clamp(70px, 9vw, 135px); position: relative; z-index: 2; }
+    .section-kicker { margin-bottom: 36px; color: var(--acid); }
+    
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    
+    /* Card Corrigido: overflow hidden garante que a imagem não invada a borda cinza */
+    .card { 
+      min-width: 0; 
+      display: flex; 
+      flex-direction: column; 
+      position: relative; 
+      border: 1px solid var(--line); 
+      background: #11120f; 
+      border-radius: 6px;
+      overflow: hidden; 
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; 
+    }
+    
+    .card:hover { 
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(201, 250, 59, 0.12); 
+      border-color: var(--acid); 
+    }
+    
+    .art { 
+      height: clamp(200px, 25vw, 380px); 
+      position: relative; 
+      overflow: hidden; 
+      background: #181916; 
+      display: grid; 
+      place-items: center; 
+      transition: filter .35s ease; 
+      border-bottom: 1px solid var(--line);
+    }
+    .card:hover .art { filter: saturate(1.2) contrast(1.05); }
+
+    /* Visual Arts Internos dos Cards */
+    .art::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.2); width: 65%; aspect-ratio: 1; border-radius: 50%; }
+    
+    .rag { background: #c9fa3b; color: #0a0b08; }
+    .rag b { font: bold clamp(4rem, 10vw, 9rem)/1 var(--sans); letter-spacing: -.12em; z-index: 1; animation: ragText 4.6s cubic-bezier(.45,0,.3,1) infinite alternate; }
+    .rag::before { content: ""; position: absolute; background: #0a0b08; width: 36%; height: 36%; border-radius: 50%; right: 10%; top: 12%; animation: ragDot 4.6s cubic-bezier(.45,0,.3,1) infinite alternate; }
+    @keyframes ragText { to { transform: translate(-5%, 7%) rotate(-5deg); } }
+    @keyframes ragDot { to { transform: translate(-64%, 74%) scale(.64); } }
+
+    .peptides { background: #2337a4; }
+    .peptides::before { content: ""; position: absolute; width: 58%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 34% 32%, #fcff6e 0 5%, #fd6269 21%, #e363dc 42%, #79dfd1 70%, #0e1c57 100%); box-shadow: 32px 31px 0 #f1ed75; z-index: 1; animation: orb 7s ease-in-out infinite alternate; }
+    .peptides::after { width: 92%; border-color: rgba(255,255,255,.4); }
+    @keyframes orb { to { transform: rotate(24deg) scale(1.11); } }
+
+    .aed { background: #d0431a; }
+    .aed b { position: relative; z-index: 1; color: #f2f0eb; font: bold clamp(3.5rem, 8vw, 8rem)/.8 var(--serif); letter-spacing: -.12em; transform: rotate(-8deg); animation: aedType 4s ease-in-out infinite alternate; }
+    .aed::before { content: ""; position: absolute; height: 1px; width: 140%; background: rgba(255,255,255,.3); transform: rotate(-32deg); box-shadow: 0 70px 0 rgba(255,255,255,.3), 0 -70px 0 rgba(255,255,255,.3); animation: aedLines 4s ease-in-out infinite alternate; }
+    @keyframes aedType { to { transform: rotate(6deg) scale(1.08); } }
+    @keyframes aedLines { to { transform: rotate(-21deg) translateX(5%); } }
+
+    .database { background: #cca817; color: #0a0b08; }
+    .database b { position: relative; z-index: 1; font: bold clamp(3rem, 7vw, 7rem)/.78 var(--sans); letter-spacing: -.12em; animation: sqlType 3.7s ease-in-out infinite alternate; }
+    .database::before { content: ""; position: absolute; width: 58%; height: 23%; border: 2px solid #0a0b08; border-radius: 50%; transform: translateY(-72px); box-shadow: 0 72px 0 -2px #cca817, 0 72px 0 0 #0a0b08, 0 144px 0 -2px #cca817, 0 144px 0 0 #0a0b08; animation: databaseStack 3.7s ease-in-out infinite alternate; }
+    @keyframes sqlType { to { transform: translateY(-11px); } }
+    @keyframes databaseStack { to { transform: translateY(-53px) scaleX(.85); } }
+
+    .biosystem { background: #135243; }
+    .biosystem b { position: relative; z-index: 2; color: var(--paper); font: 600 clamp(2.2rem, 5vw, 5rem)/.85 var(--serif); font-style: italic; letter-spacing: -.1em; animation: bioText 5s ease-in-out infinite alternate; }
+    .biosystem::before { content: ""; position: absolute; width: 88%; aspect-ratio: 1; border-radius: 48% 52% 41% 59%; border: 1px solid var(--acid); transform: rotate(38deg); animation: bioShape 7s ease-in-out infinite alternate; }
+    .biosystem::after { border-color: rgba(201,250,59,.75); width: 43%; animation: bioCore 5s ease-in-out infinite alternate; }
+    @keyframes bioText { to { transform: translateY(-8px) rotate(-3deg); } }
+    @keyframes bioShape { to { transform: rotate(112deg) scale(.88); border-radius: 58% 42% 60% 40%; } }
+    @keyframes bioCore { to { transform: scale(1.72); opacity: .28; } }
+
+    .card-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .meta { opacity: .7; margin-bottom: 24px; color: var(--acid); }
+    .card h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.1; letter-spacing: -.04em; margin: 0 0 10px; }
+    .card p { max-width: 100%; margin: 0; font-size: .92rem; line-height: 1.4; opacity: .8; }
+    .arrow { margin-top: auto; padding-top: 24px; font: 18px var(--mono); color: var(--acid); }
+
+    /* Sobre */
+    .about { color: var(--ink); background: var(--night); padding: clamp(60px, 8vw, 118px) 0; position: relative; z-index: 2; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 8%; }
+    .about .section-kicker { color: var(--acid); grid-column: 1/-1; }
+    .about-copy { margin: 0; max-width: 930px; font-size: clamp(1.8rem, 4vw, 4.8rem); line-height: 1.05; letter-spacing: -.05em; }
+    .highlight { color: var(--acid); font-family: var(--serif); font-style: italic; font-weight: 600; }
+    
+    .facts { margin: 0; border-top: 1px solid var(--line); }
+    .facts div { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .facts dt { color: var(--acid); margin-bottom: 6px; }
+    .facts dd { margin: 0; font-size: .95rem; opacity: .85; }
+    
+    .skills { grid-column: 1/-1; margin-top: 45px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .skills span { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; font: 11px var(--mono); color: var(--acid); background: rgba(201,250,59,.04); }
+
+    /* Rodapé */
+    footer { padding: 40px 0; position: relative; z-index: 2; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+    .footer-title { font: 11px var(--mono); text-transform: uppercase; color: var(--acid); }
+    .github { 
+      display: block; 
+      margin: 40px 0 50px; 
+      font-size: clamp(1.6rem, 5.5vw, 6rem); 
+      line-height: .9; 
+      letter-spacing: -.05em; 
+      border-bottom: 2px solid var(--ink); 
+      padding-bottom: 10px; 
+      width: max-content; 
+      max-width: 100%; 
+      word-break: break-all;
+      transition: color .25s, border-color .25s; 
+    }
+    .github:hover { color: var(--acid); border-color: var(--acid); }
+    .footer-links { border-top: 1px solid var(--line); padding-top: 16px; display: flex; gap: 25px; font: 11px var(--mono); text-transform: uppercase; }
+
+    /* Scroll Meter & Cursor */
+    .scroll-meter { height: 3px; background: var(--acid); position: fixed; top: 0; left: 0; width: 100%; transform: scaleX(0); transform-origin: left; z-index: 100; pointer-events: none; box-shadow: 0 0 10px var(--acid); }
+    .cursor-dot, .cursor-ring { display: none; pointer-events: none; position: fixed; z-index: 100; left: 0; top: 0; border-radius: 50%; opacity: 0; }
+    
+    @media (pointer:fine) { 
+      body, a, button { cursor: none; } 
+      .cursor-dot, .cursor-ring { display: block; } 
+      .cursor-dot { width: 7px; height: 7px; background: var(--acid); box-shadow: 0 0 8px var(--acid); } 
+      .cursor-ring { width: 31px; height: 31px; border: 1px solid var(--ink); transition: width .25s ease, height .25s ease, background .25s ease, border-color .25s ease; } 
+      .cursor-ring.is-active { width: 52px; height: 52px; background: var(--acid); border-color: var(--acid); mix-blend-mode: difference; } 
+    }
+
+    /* --- RESPONSIVIDADE PARA CELULAR (< 900px e < 600px) --- */
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-copy { font-size: clamp(1.8rem, 5.5vw, 3rem); }
+    }
+
+    @media (max-width: 650px) { 
+      .wrap { width: calc(100% - 32px); } 
+      .nav { min-height: 60px; } 
+      .nav-links { gap: 14px; } 
+      .hero { min-height: auto; padding: 30px 0 40px; } 
+      
+      .project-jump { align-self: flex-start; margin-top: 24px; } 
+      .listening-head { display: block; } 
+      .listening-note { text-align: left; margin-top: 8px; } 
+      .track-grid { grid-template-columns: 1fr; } 
+      
+      .cards { grid-template-columns: 1fr; gap: 20px; } 
+      .art { height: 240px; } 
+      
+      .footer-top { flex-direction: column; gap: 12px; } 
+      .github { margin: 30px 0 40px; } 
+      .loader-terminal { display: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Preloader de Ciência de Dados & Programação -->
+  <div class="loader-screen">
+    <canvas id="loader-canvas"></canvas>
+
+    <div class="loader-terminal">
+      <span class="term-line">> import pandas as pd, numpy as np, torch</span>
+      <span class="term-line">> connecting to data_pipeline_v2.0... OK</span>
+      <span class="term-line">> vector_db: indexing 1,024 embeddings [RAG System]</span>
+      <span class="term-line">> query: SELECT * FROM skills WHERE status = 'OPTIMIZED'</span>
+      <span class="term-line">> status: code_cube_3d initialized. Rendering portfolio...</span>
+    </div>
+
+    <div class="loader-content">
+      <div>
+        <div class="loader-brand">LUIS FERREIRA / DATA & CODE</div>
+        <div>PROCESSANDO DADOS</div>
+      </div>
+      <div class="loader-counter">000%</div>
+    </div>
+  </div>
+
   <div class="scroll-meter" aria-hidden="true"></div>
-  <div class="global-scene" aria-hidden="true"><div class="global-cube"><i data-code="SELECT * / data;"></i><i data-code="PYTHON / pandas"></i><i data-code="01001001 / 01000100"></i><i data-code="git commit / build"></i><i data-code="{ key: value } / analysis"></i><i data-code="RAG::query() / context"></i></div></div>
-  <div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"></div>
+  <div id="webgl-container"></div>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Cabeçalho -->
   <header class="wrap nav">
     <a class="brand" href="#inicio">LF / 2026</a>
-    <nav class="nav-links" aria-label="Navegação principal"><a href="#projetos">Projetos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#projetos">Projetos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
   </header>
 
   <main id="inicio">
+    <!-- Hero Section -->
     <section class="wrap hero">
       <div>
-        <div class="eyebrow reveal">Portfólio / programação e dados</div>
-        <h1 class="reveal">Programação,<br><em>dados</em> e<br>projetos reais.</h1>
-        <p class="intro reveal">Sou Luis Ferreira. Este espaço reúne projetos de programação, análise de dados e estudos que venho desenvolvendo.</p>
+        <div class="eyebrow gsap-reveal">Portfólio / programação e dados</div>
+        <h1 class="gsap-reveal">Programação,<br><em>dados</em> e<br>projetos reais.</h1>
+        <p class="intro gsap-reveal">Sou Luis Ferreira. Este espaço reúne projetos de programação, análise de dados e soluções técnicas que desenvolvo.</p>
       </div>
-      <div class="hero-sculpture" aria-hidden="true"><span class="orbit"></span><span class="block"></span><span class="disc"></span><span class="line"></span></div>
-      <a class="project-jump reveal" href="#projetos">↓ Ver projetos</a>
+      <a class="project-jump gsap-reveal" href="#projetos">↓ Ver projetos</a>
     </section>
 
-    <div class="ticker" aria-label="Programação, análise de dados, Python e projetos open source"><div class="ticker-track"><span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span><span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span><span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span><span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span></div></div>
+    <!-- Ticker -->
+    <div class="ticker" aria-label="Programação, análise de dados, Python e projetos open source">
+      <div class="ticker-track">
+        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
+        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
+        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
+        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
+      </div>
+    </div>
 
+    <!-- Seção Spotify -->
     <section class="wrap listening" aria-labelledby="listening-title">
-      <div class="listening-head reveal"><p id="listening-title" class="section-kicker">(00) Escolha uma faixa</p><p class="listening-note">Uma seleção para ouvir enquanto navega pelo portfólio.</p></div>
-      <div class="track-grid reveal" role="group" aria-label="Faixas no Spotify">
+      <div class="listening-head gsap-reveal">
+        <p id="listening-title" class="section-kicker">(00) Escolha uma faixa</p>
+        <p class="listening-note">Uma seleção para ouvir enquanto navega pelo portfólio.</p>
+      </div>
+      <div class="track-grid gsap-reveal" role="group" aria-label="Faixas no Spotify">
         <article class="track-card"><div class="track-label"><span>Faixa 01</span><span>Spotify</span></div><iframe title="Faixa 01 no Spotify" src="https://open.spotify.com/embed/track/1vczdlED0lH5Y8NJJeiVru?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>
         <article class="track-card"><div class="track-label"><span>Faixa 02</span><span>Spotify</span></div><iframe title="Faixa 02 no Spotify" src="https://open.spotify.com/embed/track/7rIhp6EWLNtM8qFIQruJPT?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>
         <article class="track-card"><div class="track-label"><span>Faixa 03</span><span>Spotify</span></div><iframe title="Faixa 03 no Spotify" src="https://open.spotify.com/embed/track/0tGjcIMCyhWq6eSDY2oQyH?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></article>
       </div>
     </section>
 
+    <!-- Projetos -->
     <section id="projetos" class="wrap projects">
-      <p class="section-kicker reveal">(01) Projetos selecionados</p>
+      <p class="section-kicker gsap-reveal">(01) Projetos selecionados</p>
       <div class="cards">
-        <a class="card reveal" href="https://github.com/lfferreiraa/Sistema-RAG-Retrieval-Augmented-Generation" target="_blank" rel="noopener noreferrer"><div class="art rag"><b>RAG</b></div><div class="card-info"><div class="meta">Programação / 2026</div><h3>Sistema RAG</h3><p>Projeto de programação que aplica recuperação de informações para consultar uma base de conhecimento.</p><div class="arrow">↗</div></div></a>
-        <a class="card reveal" href="https://github.com/lfferreiraa/peptideos" target="_blank" rel="noopener noreferrer"><div class="art peptides" aria-hidden="true"></div><div class="card-info"><div class="meta">Web / 2026</div><h3>Peptídeos</h3><p>Página de vendas criada para apresentar peptídeos de forma clara, com foco em estrutura, conteúdo e navegação.</p><div class="arrow">↗</div></div></a>
-        <a class="card reveal" href="relatorio_AED_StudentsPerformance.pdf" download="relatorio_AED_StudentsPerformance.pdf" aria-label="Baixar relatório AED Students Performance em PDF"><div class="art aed"><b>AED</b></div><div class="card-info"><div class="meta">Análise de dados / 2026</div><h3>Students Performance</h3><p>Análise exploratória de uma base com 1.000 estudantes, com tratamento de dados, gráficos e interpretação dos resultados.</p><div class="arrow">↓ PDF</div></div></a>
-        <a class="card reveal" href="https://github.com/lfferreiraa/banco-de-dados" target="_blank" rel="noopener noreferrer"><div class="art database"><b>SQL</b></div><div class="card-info"><div class="meta">Banco de dados / 2026</div><h3>Banco de Dados</h3><p>Projeto dedicado à prática e ao estudo de estruturas, consultas e organização de dados.</p><div class="arrow">↗</div></div></a>
-        <a class="card reveal" href="https://github.com/lfferreiraa/biosystem" target="_blank" rel="noopener noreferrer"><div class="art biosystem"><b>Bio<br>System</b></div><div class="card-info"><div class="meta">Web / 2026</div><h3>BioSystem</h3><p>Página de vendas desenvolvida para apresentar uma solução de forma objetiva, organizada e responsiva.</p><div class="arrow">↗</div></div></a>
+        
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/Sistema-RAG-Retrieval-Augmented-Generation" target="_blank" rel="noopener noreferrer">
+          <div class="art rag"><b>RAG</b></div>
+          <div class="card-info">
+            <div class="meta">Programação / 2026</div>
+            <h3>Sistema RAG</h3>
+            <p>Projeto de programação que aplica recuperação de informações para consultar uma base de conhecimento.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/peptideos" target="_blank" rel="noopener noreferrer">
+          <div class="art peptides" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="meta">Web / 2026</div>
+            <h3>Peptídeos</h3>
+            <p>Página de vendas criada para apresentar peptídeos de forma clara, com foco em estrutura e navegabilidade.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <a class="card gsap-reveal" href="relatorio_AED_StudentsPerformance.pdf" download="relatorio_AED_StudentsPerformance.pdf" aria-label="Baixar relatório AED Students Performance em PDF">
+          <div class="art aed"><b>AED</b></div>
+          <div class="card-info">
+            <div class="meta">Análise de dados / 2026</div>
+            <h3>Students Performance</h3>
+            <p>Análise exploratória de dados com tratamento, visualizações e relatórios estatísticos detalhados.</p>
+            <div class="arrow">↓ PDF</div>
+          </div>
+        </a>
+
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/banco-de-dados" target="_blank" rel="noopener noreferrer">
+          <div class="art database"><b>SQL</b></div>
+          <div class="card-info">
+            <div class="meta">Banco de dados / 2026</div>
+            <h3>Banco de Dados</h3>
+            <p>Projeto dedicado à prática de modelagem, consultas relacionais e otimização de dados.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/biosystem" target="_blank" rel="noopener noreferrer">
+          <div class="art biosystem"><b>Bio<br>System</b></div>
+          <div class="card-info">
+            <div class="meta">Web / 2026</div>
+            <h3>BioSystem</h3>
+            <p>Página web responsiva desenvolvida para apresentar soluções de forma estruturada e objetiva.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
       </div>
     </section>
 
-    <section id="sobre" class="about"><div class="wrap about-grid">
-      <p class="section-kicker reveal">(02) Sobre</p>
-      <p class="about-copy reveal">Meu foco é <span class="highlight">programação e dados.</span> Gosto de entender problemas, trabalhar com informação e transformar isso em soluções bem documentadas.</p>
-      <dl class="facts reveal"><div><dt>Área</dt><dd>Programação e dados</dd></div><div><dt>Projetos</dt><dd>RAG · páginas web · análise exploratória · CNC</dd></div><div><dt>Ferramentas</dt><dd>Python · SQL · Git · Power BI · JavaScript · Nodejs · C# · C++ · PHP · Flutter ·</dd></div></dl>
-      <div class="skills reveal" aria-label="Conhecimentos"><span>Python</span><span>SQL</span><span>Pandas</span><span>APIs</span><span>Git</span><span>GitHub</span><span>Jupyter</span><span>Visualização de dados</span><span>HTML / CSS / JS</span><span>Documentação</span></div>
-    </div></section>
+    <!-- Sobre -->
+    <section id="sobre" class="about">
+      <div class="wrap about-grid">
+        <p class="section-kicker gsap-reveal">(02) Sobre</p>
+        <p class="about-copy gsap-reveal">Meu foco é <span class="highlight">programação e dados.</span> Gosto de entender problemas, analisar informações e construir soluções eficientes.</p>
+        <dl class="facts gsap-reveal">
+          <div><dt>Área</dt><dd>Programação e dados</dd></div>
+          <div><dt>Projetos</dt><dd>RAG · páginas web · análise exploratória · CNC</dd></div>
+          <div><dt>Ferramentas</dt><dd>Python · SQL · Git · Power BI · JavaScript · Nodejs · C# · C++ · PHP · Flutter</dd></div>
+        </dl>
+        <div class="skills gsap-reveal" aria-label="Conhecimentos">
+          <span>Python</span><span>SQL</span><span>Pandas</span><span>APIs</span><span>Git</span><span>GitHub</span><span>Jupyter</span><span>Visualização de dados</span><span>HTML / CSS / JS</span><span>Documentação</span>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer id="contato" class="wrap"><div class="footer-top"><span class="footer-title">Mais projetos no GitHub</span><a class="small-link" href="mailto:luisfelmatias@gmail.com">luisfelmatias@gmail.com ↗</a></div><a class="github" href="https://github.com/lfferreiraa" target="_blank" rel="noopener noreferrer">github.com/lfferreiraa ↗</a><div class="footer-links"><a href="mailto:luisfelmatias@gmail.com">E-mail</a><a href="https://github.com/lfferreiraa" target="_blank" rel="noopener noreferrer">GitHub</a></div></footer>
-  <script>
-    // Animações de entrada feitas em JS puro, com interpolação e curva semelhante a bibliotecas como anime.js.
-    document.documentElement.classList.add('js-ready');
-    const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-    function animate(element, delay = 0) {
-      const start = performance.now() + delay, duration = 850;
-      function frame(now) {
-        const progress = Math.min(1, Math.max(0, (now - start) / duration));
-        const eased = easeOutExpo(progress);
-        element.style.opacity = eased;
-        if (element.classList.contains('card')) element.style.setProperty('--enter-y', `${(1 - eased) * 32}px`);
-        else element.style.transform = `translateY(${(1 - eased) * 32}px)`;
-        if (progress < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-    const observer = new IntersectionObserver((entries) => entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
-      animate(entry.target, Math.max(0, siblings.indexOf(entry.target)) * 85);
-      observer.unobserve(entry.target);
-    }), { threshold:.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  <!-- Rodapé -->
+  <footer id="contato" class="wrap">
+    <div class="footer-top">
+      <span class="footer-title">Mais projetos no GitHub</span>
+      <a class="small-link" href="mailto:luisfelmatias@gmail.com">luisfelmatias@gmail.com ↗</a>
+    </div>
+    <a class="github" href="https://github.com/lfferreiraa" target="_blank" rel="noopener noreferrer">github.com/lfferreiraa ↗</a>
+    <div class="footer-links">
+      <a href="mailto:luisfelmatias@gmail.com">E-mail</a>
+      <a href="https://github.com/lfferreiraa" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </footer>
 
-    // Profundidade sutil nos cards para cursor/mouse e indicador de avanço da página.
-    const meter = document.querySelector('.scroll-meter');
-    const scene = document.querySelector('.global-scene');
-    const cube = document.querySelector('.global-cube');
-    let scrollProgress = 0;
-    function updateScrollMeter() {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      scrollProgress = max ? scrollY / max : 0;
-      meter.style.transform = `scaleX(${scrollProgress})`;
+  <!-- ==========================================================================
+       SCRIPTS
+       ========================================================================== -->
+  <script>
+    // 1. CANVAS DO PRELOADER
+    const lCanvas = document.getElementById('loader-canvas');
+    const lCtx = lCanvas.getContext('2d');
+    let lNodes = [];
+
+    function resizeLoaderCanvas() {
+      lCanvas.width = window.innerWidth;
+      lCanvas.height = window.innerHeight;
     }
-    addEventListener('scroll', updateScrollMeter, { passive:true });
-    updateScrollMeter();
-    function animateCube(time) {
-      const sideToSide = Math.sin(time / 1350 + scrollProgress * 7) * 88;
-      const descent = scrollProgress * innerHeight * .36;
-      scene.style.transform = `translate3d(${sideToSide}px, ${descent}px, 0)`;
-      cube.style.transform = `rotateX(${22 + scrollProgress * 550}deg) rotateY(${time / 62 + scrollProgress * 730}deg) rotateZ(${scrollProgress * 180}deg)`;
-      requestAnimationFrame(animateCube);
+    resizeLoaderCanvas();
+    window.addEventListener('resize', resizeLoaderCanvas);
+
+    const nodeCount = window.innerWidth < 768 ? 30 : 65;
+    for (let i = 0; i < nodeCount; i++) {
+      lNodes.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        radius: Math.random() * 2 + 1
+      });
     }
-    if (!matchMedia('(prefers-reduced-motion:reduce)').matches) requestAnimationFrame(animateCube);
-    if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+
+    let isLoaderActive = true;
+    function animateLoaderCanvas() {
+      if (!isLoaderActive) return;
+      lCtx.clearRect(0, 0, lCanvas.width, lCanvas.height);
+
+      for (let i = 0; i < lNodes.length; i++) {
+        for (let j = i + 1; j < lNodes.length; j++) {
+          const dx = lNodes[i].x - lNodes[j].x;
+          const dy = lNodes[i].y - lNodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 120) {
+            lCtx.beginPath();
+            lCtx.moveTo(lNodes[i].x, lNodes[i].y);
+            lCtx.lineTo(lNodes[j].x, lNodes[j].y);
+            lCtx.strokeStyle = `rgba(201, 250, 59, ${0.3 - dist / 400})`;
+            lCtx.lineWidth = 0.8;
+            lCtx.stroke();
+          }
+        }
+      }
+
+      lNodes.forEach(node => {
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x < 0 || node.x > lCanvas.width) node.vx *= -1;
+        if (node.y < 0 || node.y > lCanvas.height) node.vy *= -1;
+
+        lCtx.beginPath();
+        lCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        lCtx.fillStyle = '#c9fa3b';
+        lCtx.fill();
+      });
+
+      requestAnimationFrame(animateLoaderCanvas);
+    }
+    animateLoaderCanvas();
+
+    // 2. TEXTURA DO CUBO DE CÓDIGO (2D CANVASTEXTURE)
+    const codeCanvas = document.createElement('canvas');
+    codeCanvas.width = 512;
+    codeCanvas.height = 512;
+    const codeCtx = codeCanvas.getContext('2d');
+
+    const codeLines = [
+      "import pandas as pd",
+      "import numpy as np",
+      "import torch",
+      "import torch.nn as nn",
+      "",
+      "# INITIALIZING DATA PIPELINE",
+      "class NeuralDataNet(nn.Module):",
+      "  def __init__(self, input_dim):",
+      "    super().__init__()",
+      "    self.fc1 = nn.Linear(input_dim, 256)",
+      "    self.relu = nn.ReLU()",
+      "    self.fc2 = nn.Linear(256, 64)",
+      "",
+      "  def forward(self, x):",
+      "    return self.fc2(self.relu(self.fc1(x)))",
+      "",
+      "# VECTOR DATABASE QUERY",
+      "query_vector = embed('Data Science')",
+      "results = vector_db.search(query_vector)",
+      "print('Status:', 200, 'OK')",
+      "",
+      "-- SQL AGGREGATION",
+      "SELECT id, skill_name, level",
+      "FROM developer_skills",
+      "WHERE category = 'DATA_ENGINEERING'",
+      "ORDER BY level DESC;",
+      "",
+      "[INFO] Loading RAG System...",
+      "[SUCCESS] 1024 embeddings indexed",
+      "OPTIMIZATION_COMPLETE = True"
+    ];
+
+    let scrollYOffset = 0;
+
+    function renderCodeTexture() {
+      codeCtx.clearRect(0, 0, 512, 512);
+
+      codeCtx.strokeStyle = 'rgba(201, 250, 59, 0.4)';
+      codeCtx.lineWidth = 3;
+      codeCtx.strokeRect(10, 10, 492, 492);
+
+      codeCtx.fillStyle = 'rgba(239, 92, 49, 0.8)';
+      codeCtx.beginPath(); codeCtx.arc(32, 32, 5, 0, Math.PI * 2); codeCtx.fill();
+      codeCtx.fillStyle = 'rgba(244, 213, 84, 0.8)';
+      codeCtx.beginPath(); codeCtx.arc(48, 32, 5, 0, Math.PI * 2); codeCtx.fill();
+      codeCtx.fillStyle = 'rgba(201, 250, 59, 0.8)';
+      codeCtx.beginPath(); codeCtx.arc(64, 32, 5, 0, Math.PI * 2); codeCtx.fill();
+
+      codeCtx.font = '15px "DM Mono", monospace';
+      codeCtx.fillStyle = '#c9fa3b';
+
+      const lineH = 22;
+      const startY = 65;
+
+      for (let i = 0; i < 22; i++) {
+        const lineIdx = (i + Math.floor(scrollYOffset)) % codeLines.length;
+        const text = codeLines[lineIdx];
+        const yPos = startY + (i * lineH);
+        if (yPos < 480) {
+          codeCtx.fillText(text, 28, yPos);
+        }
+      }
+
+      scrollYOffset += 0.04;
+    }
+
+    const codeTexture = new THREE.CanvasTexture(codeCanvas);
+    codeTexture.minFilter = THREE.LinearFilter;
+
+    // 3. THREE.JS SCENE (3D CUBE ADAPTÁVEL PARA MOBILE)
+    const container = document.getElementById('webgl-container');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 4.5;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const cubeGeo = new THREE.BoxGeometry(1.8, 1.8, 1.8);
+    const cubeMat = new THREE.MeshBasicMaterial({
+      map: codeTexture,
+      transparent: true,
+      opacity: 0.9,
+      side: THREE.DoubleSide
+    });
+    const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+    
+    // Função para posicionar o cubo perfeitamente conforme a tela
+    function updateCubeLayout() {
+      const isSmall = window.innerWidth < 768;
+      if (isSmall) {
+        mesh.position.set(0, 1.2, -1);
+        mesh.scale.set(0.65, 0.65, 0.65);
+      } else {
+        mesh.position.set(2.4, 0.2, 0);
+        mesh.scale.set(1, 1, 1);
+      }
+    }
+    updateCubeLayout();
+    scene.add(mesh);
+
+    const wireGeo = new THREE.WireframeGeometry(cubeGeo);
+    const wireMat = new THREE.LineBasicMaterial({ color: 0xc9fa3b, transparent: true, opacity: 0.4 });
+    const wireframe = new THREE.LineSegments(wireGeo, wireMat);
+    mesh.add(wireframe);
+
+    // Partículas
+    const particleCount = window.innerWidth < 768 ? 300 : 800;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePositions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i++) {
+      particlePositions[i] = (Math.random() - 0.5) * 10;
+    }
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    const particleMat = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0xc9fa3b,
+      transparent: true,
+      opacity: 0.7
+    });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+    });
+
+    const clock = new THREE.Clock();
+    function renderLoop() {
+      const elapsed = clock.getElapsedTime();
+
+      renderCodeTexture();
+      codeTexture.needsUpdate = true;
+
+      mesh.rotation.y = elapsed * 0.18;
+      mesh.rotation.x = elapsed * 0.12;
+      particles.rotation.y = -elapsed * 0.04;
+
+      targetX += (mouseX - targetX) * 0.05;
+      targetY += (mouseY - targetY) * 0.05;
+
+      mesh.rotation.y += targetX * 0.25;
+      mesh.rotation.x += targetY * 0.25;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(renderLoop);
+    }
+    renderLoop();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      updateCubeLayout();
+    });
+
+    // 4. PRELOADER GSAP ANIMATION
+    document.body.style.overflow = 'hidden';
+
+    const counterEl = document.querySelector('.loader-counter');
+    const counterObj = { value: 0 };
+
+    const initTL = gsap.timeline({
+      onComplete: () => {
+        isLoaderActive = false;
+        document.body.style.overflow = '';
+        ScrollTrigger.refresh();
+      }
+    });
+
+    if (window.innerWidth >= 650) {
+      initTL.to('.term-line', {
+        opacity: 1,
+        y: 0,
+        duration: 0.25,
+        stagger: 0.2,
+        ease: 'power2.out'
+      });
+    }
+
+    initTL.to(counterObj, {
+      value: 100,
+      duration: 1.3,
+      ease: 'power3.inOut',
+      onUpdate: () => {
+        counterEl.textContent = Math.floor(counterObj.value).toString().padStart(3, '0') + '%';
+      }
+    }, '<')
+    .to(['.loader-terminal', '.loader-content', '#loader-canvas'], {
+      opacity: 0,
+      duration: 0.35,
+      ease: 'power2.out'
+    })
+    .to('.loader-screen', {
+      yPercent: -100,
+      duration: 0.85,
+      ease: 'power4.inOut'
+    });
+
+    // 5. GSAP SCROLLTRIGGER
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('.scroll-meter', {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true
+      }
+    });
+
+    gsap.to(mesh.position, {
+      y: -0.8,
+      z: -1.5,
+      scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1
+      }
+    });
+
+    gsap.utils.toArray('.gsap-reveal').forEach((el) => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // 6. CURSOR CUSTOMIZADO (DESATIVADO EM TELAS TOUCH)
+    if (window.matchMedia('(pointer:fine)').matches) {
       const dot = document.querySelector('.cursor-dot');
       const ring = document.querySelector('.cursor-ring');
-      let mouseX = -100, mouseY = -100, ringX = -100, ringY = -100;
-      function positionCursor() {
-        ringX += (mouseX - ringX) * .18;
-        ringY += (mouseY - ringY) * .18;
-        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
-        requestAnimationFrame(positionCursor);
-      }
-      addEventListener('pointermove', event => {
-        mouseX = event.clientX; mouseY = event.clientY;
-        dot.style.opacity = 1; ring.style.opacity = 1;
-      });
-      document.querySelectorAll('a, button, .card').forEach(item => {
-        item.addEventListener('pointerenter', () => ring.classList.add('is-active'));
-        item.addEventListener('pointerleave', () => ring.classList.remove('is-active'));
-      });
-      addEventListener('blur', () => { dot.style.opacity = 0; ring.style.opacity = 0; });
-      positionCursor();
-    }
+      let rx = -100, ry = -100, mx = -100, my = -100;
 
+      window.addEventListener('pointermove', (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+      });
+
+      function updateCursor() {
+        rx += (mx - rx) * 0.18;
+        ry += (my - ry) * 0.18;
+        dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+      }
+      updateCursor();
+
+      document.querySelectorAll('a, button, .card').forEach((btn) => {
+        btn.addEventListener('pointerenter', () => ring.classList.add('is-active'));
+        btn.addEventListener('pointerleave', () => ring.classList.remove('is-active'));
+      });
+    }
   </script>
 </body>
 </html>
