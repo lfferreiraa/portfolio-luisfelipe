@@ -385,7 +385,7 @@
     .github:hover { color: var(--acid); border-color: var(--acid); }
     .footer-links { border-top: 1px solid var(--line); padding-top: 16px; display: flex; gap: 25px; font: 11px var(--mono); text-transform: uppercase; }
 
-    /* Scroll Meter & Cursor */
+    /* Scroll Meter & Cursor Customizado */
     .scroll-meter { height: 3px; background: var(--acid); position: fixed; top: 0; left: 0; width: 100%; transform: scaleX(0); transform-origin: left; z-index: 100; pointer-events: none; box-shadow: 0 0 10px var(--acid); }
     .cursor-dot, .cursor-ring { display: none; pointer-events: none; position: fixed; z-index: 100; left: 0; top: 0; border-radius: 50%; opacity: 0; }
     
@@ -660,7 +660,7 @@
       }, "-=0.3");
     });
 
-    // 2. CURSOR PERSONALIZADO & SCROLL METER
+    // 2. CURSOR PERSONALIZADO & SCROLL METER (CORRIGIDO)
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');
     const scrollMeter = document.querySelector('.scroll-meter');
@@ -668,6 +668,8 @@
     window.addEventListener('mousemove', (e) => {
       const { clientX: x, clientY: y } = e;
       if (cursorDot && cursorRing) {
+        cursorDot.style.opacity = '1';
+        cursorRing.style.opacity = '1';
         cursorDot.style.transform = `translate(${x - 3.5}px, ${y - 3.5}px)`;
         cursorRing.style.transform = `translate(${x - 15.5}px, ${y - 15.5}px)`;
       }
