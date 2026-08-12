@@ -344,9 +344,9 @@
     @keyframes bioShape { to { transform: rotate(112deg) scale(.88); border-radius: 58% 42% 60% 40%; } }
     @keyframes bioCore { to { transform: scale(1.72); opacity: .28; } }
 
-    /* Novo estilo para a arte do card de Machine Learning */
+    /* Arte do card de Machine Learning */
     .ml { background: var(--blue); color: #f2f0eb; }
-    .ml b { position: relative; z-index: 1; font: bold clamp(3rem, 7vw, 7rem)/.78 var(--sans); letter-spacing: -.12em; animation: mlType 4s ease-in-out infinite alternate; }
+    .ml b { position: relative; z-index: 2; font: bold clamp(3rem, 7vw, 7rem)/.78 var(--sans); letter-spacing: -.12em; animation: mlType 4s ease-in-out infinite alternate; }
     .ml::before { content: ""; position: absolute; width: 65%; aspect-ratio: 1; border: 2px dashed rgba(255, 255, 255, 0.35); border-radius: 50%; animation: mlCircle 10s linear infinite; }
     @keyframes mlType { to { transform: scale(1.08) rotate(-3deg); } }
     @keyframes mlCircle { to { transform: rotate(360deg); } }
@@ -571,7 +571,6 @@
           </div>
         </a>
 
-        <!-- NOVO PROJETO ADICIONADO -->
         <a class="card gsap-reveal" href="https://github.com/lfferreiraa/Machine-Learning" target="_blank" rel="noopener noreferrer">
           <div class="art ml"><b>ML</b></div>
           <div class="card-info">
@@ -619,27 +618,64 @@
        SCRIPTS
        ========================================================================== -->
   <script>
-    // 1. ANIMAÇÃO DO NOTEBOOK ABRINDO E EXPANDINDO (GSAP)
-    window.addEventListener('DOMContentLoaded', () => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          document.querySelector('.notebook-loader').style.display = 'none';
-          
-          // Anima os elementos da tela principal
+    // 1. INICIALIZAÇÃO SEGURA DO NOTEBOOK 3D E REVEAL DAS SEÇÕES (GSAP)
+    function initPortfolio() {
+      // Fallback de emergência se GSAP não for carregado
+      if (typeof gsap === 'undefined') {
+        const loader = document.querySelector('.notebook-loader');
+        if (loader) loader.style.display = 'none';
+        document.querySelectorAll('.gsap-reveal').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
+      // Função para revelar elementos na tela via ScrollTrigger ou direto
+      const revealElements = () => {
+        const loader = document.querySelector('.notebook-loader');
+        if (loader) loader.style.display = 'none';
+
+        if (typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+          gsap.utils.toArray('.gsap-reveal').forEach((el) => {
+            gsap.to(el, {
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 92%',
+                toggleActions: 'play none none none'
+              },
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out'
+            });
+          });
+        } else {
           gsap.to('.gsap-reveal', {
             opacity: 1,
             y: 0,
-            duration: 0.9,
-            stagger: 0.1,
+            duration: 0.8,
+            stagger: 0.05,
             ease: 'power2.out'
           });
         }
+      };
+
+      // Timeout de segurança (para garantir que nada fique invisível se a animação demorar)
+      const safetyTimeout = setTimeout(revealElements, 3800);
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          clearTimeout(safetyTimeout);
+          revealElements();
+        }
       });
 
-      // Etapa 1: Tampa do notebook abre (de -95deg para 0deg)
+      // Etapa 1: Tampa do notebook abre
       tl.to('.laptop-lid', {
         rotateX: 0,
-        duration: 1.6,
+        duration: 1.4,
         ease: 'power3.inOut'
       })
       
@@ -647,38 +683,45 @@
       .to('.nb-term-line', {
         opacity: 1,
         y: 0,
-        stagger: 0.15,
-        duration: 0.4,
+        stagger: 0.12,
+        duration: 0.35,
         ease: 'power1.out'
-      }, "-=1.0")
+      }, "-=0.9")
 
       // Etapa 3: Contador vai de 0% a 100%
       .to({ val: 0 }, {
         val: 100,
-        duration: 1.4,
+        duration: 1.2,
         ease: 'power1.inOut',
         onUpdate: function() {
           const progress = Math.floor(this.targets()[0].val);
-          document.querySelector('.nb-counter').textContent = String(progress).padStart(3, '0') + '%';
+          const counterEl = document.querySelector('.nb-counter');
+          if (counterEl) counterEl.textContent = String(progress).padStart(3, '0') + '%';
         }
-      }, "-=1.2")
+      }, "-=1.0")
 
-      // Etapa 4: Câmera avança e a tela expande para preencher a janela
+      // Etapa 4: Câmera avança e a tela expande
       .to('.laptop-scene', {
         scale: 14,
         rotateX: 0,
-        duration: 1.1,
+        duration: 1.0,
         ease: 'power4.in'
       }, "+=0.1")
 
-      // Etapa 5: Fade-out suave no container do loader
+      // Etapa 5: Fade-out no loader
       .to('.notebook-loader', {
         opacity: 0,
-        duration: 0.45
+        duration: 0.4
       }, "-=0.3");
-    });
+    }
 
-    // 2. CURSOR PERSONALIZADO & SCROLL METER (CORRIGIDO)
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      initPortfolio();
+    } else {
+      document.addEventListener('DOMContentLoaded', initPortfolio);
+    }
+
+    // 2. CURSOR PERSONALIZADO & SCROLL METER
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');
     const scrollMeter = document.querySelector('.scroll-meter');
