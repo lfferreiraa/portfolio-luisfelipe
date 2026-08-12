@@ -344,6 +344,13 @@
     @keyframes bioShape { to { transform: rotate(112deg) scale(.88); border-radius: 58% 42% 60% 40%; } }
     @keyframes bioCore { to { transform: scale(1.72); opacity: .28; } }
 
+    /* Novo estilo para a arte do card de Machine Learning */
+    .ml { background: var(--blue); color: #f2f0eb; }
+    .ml b { position: relative; z-index: 1; font: bold clamp(3rem, 7vw, 7rem)/.78 var(--sans); letter-spacing: -.12em; animation: mlType 4s ease-in-out infinite alternate; }
+    .ml::before { content: ""; position: absolute; width: 65%; aspect-ratio: 1; border: 2px dashed rgba(255, 255, 255, 0.35); border-radius: 50%; animation: mlCircle 10s linear infinite; }
+    @keyframes mlType { to { transform: scale(1.08) rotate(-3deg); } }
+    @keyframes mlCircle { to { transform: rotate(360deg); } }
+
     .card-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
     .meta { opacity: .7; margin-bottom: 24px; color: var(--acid); }
     .card h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.1; letter-spacing: -.04em; margin: 0 0 10px; }
@@ -560,6 +567,17 @@
             <div class="meta">Web / 2026</div>
             <h3>BioSystem</h3>
             <p>Página web responsiva desenvolvida para apresentar soluções de forma estruturada e objetiva.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <!-- NOVO PROJETO ADICIONADO -->
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/Machine-Learning" target="_blank" rel="noopener noreferrer">
+          <div class="art ml"><b>ML</b></div>
+          <div class="card-info">
+            <div class="meta">Machine Learning / 2026</div>
+            <h3>Machine Learning</h3>
+            <p>Projeto para prever falhas em máquinas industriais a partir de dados de sensores.</p>
             <div class="arrow">↗</div>
           </div>
         </a>
