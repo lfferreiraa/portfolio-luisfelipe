@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfólio de Luis Ferreira — programação e dados." />
-  <title>Luis Ferreira — Programação e dados</title>
+  <meta name="description" content="Portfólio de Luis Ferreira — Ciência de Dados, Inteligência Artificial e desenvolvimento de software." />
+  <title>Luis Ferreira — Ciência de Dados e IA</title>
 
   <!-- Typography & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,8 +312,116 @@
     .card:hover .art { filter: saturate(1.2) contrast(1.05); }
 
     .art::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.2); width: 65%; aspect-ratio: 1; border-radius: 50%; }
+
+    /* FraudWatch AI: painel de risco em tempo real */
+    .card--featured { grid-column: span 2; }
+
+    .fraudwatch {
+      background:
+        radial-gradient(circle at 78% 18%, rgba(201, 250, 59, .18), transparent 30%),
+        linear-gradient(135deg, #08110e 0%, #10231d 100%);
+      color: var(--acid);
+    }
+
+    .fraudwatch::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201, 250, 59, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 250, 59, .07) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to right, #000, transparent 90%);
+    }
+
+    .fraudwatch::after {
+      width: min(52%, 290px);
+      border-color: rgba(201, 250, 59, .28);
+      box-shadow: 0 0 0 28px rgba(201, 250, 59, .035), 0 0 70px rgba(201, 250, 59, .08);
+      animation: fraudwatchRadar 3.8s ease-in-out infinite;
+    }
+
+    .fraudwatch-ui {
+      position: relative;
+      z-index: 2;
+      width: min(82%, 520px);
+      padding: clamp(18px, 3vw, 30px);
+      border: 1px solid rgba(201, 250, 59, .35);
+      border-radius: 8px;
+      background: rgba(4, 10, 8, .76);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, .34);
+      backdrop-filter: blur(5px);
+    }
+
+    .fraudwatch-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font: 10px var(--mono);
+      letter-spacing: .08em;
+    }
+
+    .fraudwatch-top i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 12px var(--acid);
+      animation: fraudwatchPulse 1.4s ease-in-out infinite;
+    }
+
+    .fraudwatch-score {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      margin: 16px 0 18px;
+    }
+
+    .fraudwatch-score strong {
+      color: var(--ink);
+      font: 700 clamp(3.4rem, 7vw, 6.6rem)/.72 var(--sans);
+      letter-spacing: -.09em;
+    }
+
+    .fraudwatch-score span {
+      padding-bottom: 2px;
+      font: 10px var(--mono);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .fraudwatch-signal {
+      height: 34px;
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      border-bottom: 1px solid rgba(201, 250, 59, .28);
+    }
+
+    .fraudwatch-signal i {
+      flex: 1;
+      height: var(--bar);
+      background: var(--acid);
+      opacity: .82;
+      transform-origin: bottom;
+      animation: fraudwatchSignal 1.8s ease-in-out infinite alternate;
+      animation-delay: calc(var(--delay) * -1s);
+    }
+
+    @keyframes fraudwatchRadar {
+      0%, 100% { transform: scale(.92); opacity: .35; }
+      50% { transform: scale(1.08); opacity: .9; }
+    }
+
+    @keyframes fraudwatchPulse {
+      50% { opacity: .3; transform: scale(.7); }
+    }
+
+    @keyframes fraudwatchSignal {
+      to { transform: scaleY(.45); opacity: .45; }
+    }
     
-    /* Arte do card de Phishing/Fraudes: cadeado abrindo e fechando */
+    /* Arte do card de Phishing: cadeado abrindo e fechando */
     .security-lock {
       background: #c9fa3b;
       color: #0a0b08;
@@ -409,6 +517,56 @@
     @keyframes securityScan {
       from { transform: translateY(-72px) rotate(-8deg); }
       to { transform: translateY(72px) rotate(8deg); }
+    }
+
+    /* Arte do assistente jurídico com RAG */
+    .legal-rag {
+      background: #e7e0d2;
+      color: #0a0b08;
+    }
+
+    .legal-rag::before {
+      content: "§";
+      position: absolute;
+      right: 7%;
+      top: -18%;
+      color: rgba(10, 11, 8, .09);
+      font: 600 clamp(13rem, 24vw, 24rem)/1 var(--serif);
+      transform: rotate(8deg);
+    }
+
+    .legal-rag::after {
+      width: 70%;
+      border-color: rgba(10, 11, 8, .24);
+      border-radius: 0;
+      transform: rotate(-7deg);
+      animation: legalFrame 5s ease-in-out infinite alternate;
+    }
+
+    .legal-rag-mark {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      color: #0a0b08;
+    }
+
+    .legal-rag-mark b {
+      font: 700 clamp(3.8rem, 8vw, 8rem)/.72 var(--sans);
+      letter-spacing: -.1em;
+    }
+
+    .legal-rag-mark span {
+      padding: 0 0 2px 12px;
+      border-left: 2px solid #0a0b08;
+      font: 10px/1.35 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes legalFrame {
+      to { transform: rotate(7deg) scale(.9); }
     }
 
     .peptides { background: #2337a4; }
@@ -514,7 +672,8 @@
       .listening-note { text-align: left; margin-top: 8px; } 
       .track-grid { grid-template-columns: 1fr; } 
       
-      .cards { grid-template-columns: 1fr; gap: 20px; } 
+      .cards { grid-template-columns: 1fr; gap: 20px; }
+      .card--featured { grid-column: span 1; }
       .art { height: 240px; } 
       
       .footer-top { flex-direction: column; gap: 12px; } 
@@ -578,20 +737,20 @@
     <!-- Hero Section -->
     <section class="wrap hero">
       <div>
-        <div class="eyebrow gsap-reveal">Portfólio / programação e dados</div>
-        <h1 class="gsap-reveal">Programação,<br><em>dados</em> e<br>projetos reais.</h1>
-        <p class="intro gsap-reveal">Sou Luis Ferreira. Este espaço reúne projetos de programação, análise de dados e soluções técnicas que desenvolvo.</p>
+        <div class="eyebrow gsap-reveal">Portfólio / Ciência de Dados e IA</div>
+        <h1 class="gsap-reveal">Ciência de<br><em>dados</em>, IA e<br>software real.</h1>
+        <p class="intro gsap-reveal">Sou Luis Ferreira. Transformo dados em soluções inteligentes — de modelos de Machine Learning e sistemas RAG a APIs e produtos full-stack.</p>
       </div>
       <a class="project-jump gsap-reveal" href="#projetos">↓ Ver projetos</a>
     </section>
 
     <!-- Ticker -->
-    <div class="ticker" aria-label="Programação, análise de dados, Python e projetos open source">
+    <div class="ticker" aria-label="Ciência de Dados, Machine Learning, IA generativa, Python e projetos open source">
       <div class="ticker-track">
-        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
-        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
-        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
-        <span>PROGRAMAÇÃO ✳ ANÁLISE DE DADOS ✳ PYTHON ✳ PROJETOS OPEN SOURCE ✳</span>
+        <span>CIÊNCIA DE DADOS ✳ MACHINE LEARNING ✳ IA GENERATIVA ✳ PYTHON ✳ OPEN SOURCE ✳</span>
+        <span>CIÊNCIA DE DADOS ✳ MACHINE LEARNING ✳ IA GENERATIVA ✳ PYTHON ✳ OPEN SOURCE ✳</span>
+        <span>CIÊNCIA DE DADOS ✳ MACHINE LEARNING ✳ IA GENERATIVA ✳ PYTHON ✳ OPEN SOURCE ✳</span>
+        <span>CIÊNCIA DE DADOS ✳ MACHINE LEARNING ✳ IA GENERATIVA ✳ PYTHON ✳ OPEN SOURCE ✳</span>
       </div>
     </div>
 
@@ -612,8 +771,26 @@
     <section id="projetos" class="wrap projects">
       <p class="section-kicker gsap-reveal">(01) Projetos selecionados</p>
       <div class="cards">
+
+        <a class="card card--featured gsap-reveal" href="https://github.com/lfferreiraa/FraudWatch-AI" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto FraudWatch AI no GitHub">
+          <div class="art fraudwatch" aria-hidden="true">
+            <div class="fraudwatch-ui">
+              <div class="fraudwatch-top"><span>Live / Risk engine</span><i></i></div>
+              <div class="fraudwatch-score"><strong>94</strong><span>Risk score</span></div>
+              <div class="fraudwatch-signal">
+                <i style="--bar:28%;--delay:.1"></i><i style="--bar:48%;--delay:.3"></i><i style="--bar:36%;--delay:.5"></i><i style="--bar:72%;--delay:.7"></i><i style="--bar:54%;--delay:.9"></i><i style="--bar:88%;--delay:1.1"></i><i style="--bar:62%;--delay:1.3"></i><i style="--bar:100%;--delay:1.5"></i><i style="--bar:76%;--delay:1.7"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="meta">IA / Full stack / 2026</div>
+            <h3>FraudWatch AI</h3>
+            <p>Plataforma full-stack de detecção de fraudes em tempo real, com Machine Learning, FastAPI, React, PostgreSQL, WebSockets e explicações SHAP.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
         
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/Sistema-RAG-Retrieval-Augmented-Generation" target="_blank" rel="noopener noreferrer">
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/real-time-phishing-fraud-detection" target="_blank" rel="noopener noreferrer">
           <div class="art security-lock" aria-hidden="true">
             <div class="lock-icon">
               <div class="lock-shackle"></div>
@@ -623,9 +800,21 @@
             </div>
           </div>
           <div class="card-info">
-            <div class="meta">Programação / 2026</div>
-            <h3>Sistema Detecção de Phishing e Fraudes</h3>
-            <p>Projeto de programação que aplica recuperação de informações para consultar uma base de conhecimento.</p>
+            <div class="meta">Cybersecurity / MLOps / 2026</div>
+            <h3>Detecção de Phishing em Tempo Real</h3>
+            <p>Pipeline orientado a eventos com Machine Learning, Redpanda/Kafka, FastAPI, MLOps e observabilidade para gerar alertas de segurança.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/ia-legisla-ao" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto Assistente de Legislação Brasileira no GitHub">
+          <div class="art legal-rag" aria-hidden="true">
+            <div class="legal-rag-mark"><b>RAG</b><span>Lex<br>Brasil</span></div>
+          </div>
+          <div class="card-info">
+            <div class="meta">IA generativa / RAG / 2026</div>
+            <h3>Assistente de Legislação Brasileira</h3>
+            <p>Assistente que consulta documentos legais, responde com fontes e oferece interfaces em Streamlit, API REST e linha de comando.</p>
             <div class="arrow">↗</div>
           </div>
         </a>
@@ -687,14 +876,15 @@
     <section id="sobre" class="about">
       <div class="wrap about-grid">
         <p class="section-kicker gsap-reveal">(02) Sobre</p>
-        <p class="about-copy gsap-reveal">Meu foco é <span class="highlight">programação e dados.</span> Gosto de entender problemas, analisar informações e construir soluções eficientes.</p>
+        <p class="about-copy gsap-reveal">Meu foco é <span class="highlight">Ciência de Dados e IA.</span> Transformo problemas complexos em sistemas úteis, explicáveis e prontos para evoluir.</p>
         <dl class="facts gsap-reveal">
-          <div><dt>Área</dt><dd>Programação e dados</dd></div>
-          <div><dt>Projetos</dt><dd>RAG · páginas web · análise exploratória · CNC</dd></div>
-          <div><dt>Ferramentas</dt><dd>Python · SQL · Git · Power BI · JavaScript · Nodejs · C# · C++ · PHP · Flutter</dd></div>
+          <div><dt>Área</dt><dd>Ciência de Dados · Inteligência Artificial · Engenharia de Software</dd></div>
+          <div><dt>Especialidades</dt><dd>Machine Learning · RAG · APIs · MLOps · Cybersecurity</dd></div>
+          <div><dt>Stack principal</dt><dd>Python · FastAPI · React · PostgreSQL · SQL · Docker</dd></div>
+          <div><dt>Base</dt><dd>Brasil · projetos e documentação publicados no GitHub</dd></div>
         </dl>
         <div class="skills gsap-reveal" aria-label="Conhecimentos">
-          <span>Python</span><span>SQL</span><span>Pandas</span><span>APIs</span><span>Git</span><span>GitHub</span><span>Jupyter</span><span>Visualização de dados</span><span>HTML / CSS / JS</span><span>Documentação</span>
+          <span>Python</span><span>Machine Learning</span><span>RAG</span><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>SQL</span><span>Docker</span><span>Pandas</span><span>APIs</span><span>MLOps</span><span>Cybersecurity</span><span>Git / GitHub</span><span>Visualização de dados</span>
         </div>
       </div>
     </section>
