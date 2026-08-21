@@ -313,11 +313,103 @@
 
     .art::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.2); width: 65%; aspect-ratio: 1; border-radius: 50%; }
     
-    .rag { background: #c9fa3b; color: #0a0b08; }
-    .rag b { font: bold clamp(4rem, 10vw, 9rem)/1 var(--sans); letter-spacing: -.12em; z-index: 1; animation: ragText 4.6s cubic-bezier(.45,0,.3,1) infinite alternate; }
-    .rag::before { content: ""; position: absolute; background: #0a0b08; width: 36%; height: 36%; border-radius: 50%; right: 10%; top: 12%; animation: ragDot 4.6s cubic-bezier(.45,0,.3,1) infinite alternate; }
-    @keyframes ragText { to { transform: translate(-5%, 7%) rotate(-5deg); } }
-    @keyframes ragDot { to { transform: translate(-64%, 74%) scale(.64); } }
+    /* Arte do card de Phishing/Fraudes: cadeado abrindo e fechando */
+    .security-lock {
+      background: #c9fa3b;
+      color: #0a0b08;
+    }
+
+    .security-lock::after {
+      width: 72%;
+      border-color: rgba(10, 11, 8, .24);
+      animation: securityRing 4.2s ease-in-out infinite;
+    }
+
+    .security-lock::before {
+      content: "";
+      position: absolute;
+      width: 82%;
+      height: 1px;
+      background: rgba(10, 11, 8, .18);
+      box-shadow: 0 -52px 0 rgba(10, 11, 8, .10), 0 52px 0 rgba(10, 11, 8, .10);
+      animation: securityScan 3.2s ease-in-out infinite alternate;
+    }
+
+    .lock-icon {
+      position: relative;
+      z-index: 2;
+      width: clamp(90px, 10vw, 140px);
+      height: clamp(112px, 12vw, 170px);
+      filter: drop-shadow(0 16px 18px rgba(10, 11, 8, .20));
+      animation: lockFloat 3.2s ease-in-out infinite;
+    }
+
+    .lock-shackle {
+      position: absolute;
+      width: 58%;
+      height: 52%;
+      left: 21%;
+      top: 2%;
+      border: clamp(8px, 1vw, 13px) solid #0a0b08;
+      border-bottom: 0;
+      border-radius: 999px 999px 0 0;
+      transform-origin: 88% 100%;
+      animation: unlockShackle 3.2s cubic-bezier(.65, 0, .35, 1) infinite;
+    }
+
+    .lock-body {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 62%;
+      border-radius: 18%;
+      background: #0a0b08;
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .keyhole {
+      position: relative;
+      width: 16%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #c9fa3b;
+    }
+
+    .keyhole::after {
+      content: "";
+      position: absolute;
+      width: 45%;
+      height: 110%;
+      left: 50%;
+      top: 62%;
+      transform: translateX(-50%);
+      background: #c9fa3b;
+      border-radius: 0 0 999px 999px;
+    }
+
+    @keyframes unlockShackle {
+      0%, 28%, 100% { transform: translateY(0) rotate(0deg); }
+      42%, 72% { transform: translateY(-12%) rotate(-24deg); }
+      86% { transform: translateY(0) rotate(0deg); }
+    }
+
+    @keyframes lockFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-7px) scale(1.025); }
+    }
+
+    @keyframes securityRing {
+      0%, 100% { transform: scale(.92); opacity: .45; }
+      50% { transform: scale(1.06); opacity: .9; }
+    }
+
+    @keyframes securityScan {
+      from { transform: translateY(-72px) rotate(-8deg); }
+      to { transform: translateY(72px) rotate(8deg); }
+    }
 
     .peptides { background: #2337a4; }
     .peptides::before { content: ""; position: absolute; width: 58%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 34% 32%, #fcff6e 0 5%, #fd6269 21%, #e363dc 42%, #79dfd1 70%, #0e1c57 100%); box-shadow: 32px 31px 0 #f1ed75; z-index: 1; animation: orb 7s ease-in-out infinite alternate; }
@@ -522,7 +614,14 @@
       <div class="cards">
         
         <a class="card gsap-reveal" href="https://github.com/lfferreiraa/Sistema-RAG-Retrieval-Augmented-Generation" target="_blank" rel="noopener noreferrer">
-          <div class="art rag"><b>RAG</b></div>
+          <div class="art security-lock" aria-hidden="true">
+            <div class="lock-icon">
+              <div class="lock-shackle"></div>
+              <div class="lock-body">
+                <div class="keyhole"></div>
+              </div>
+            </div>
+          </div>
           <div class="card-info">
             <div class="meta">Programação / 2026</div>
             <h3>Sistema Detecção de Phishing e Fraudes</h3>
