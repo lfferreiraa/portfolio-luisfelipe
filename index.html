@@ -279,9 +279,16 @@
     .projects { padding: clamp(60px, 8vw, 118px) 0 clamp(70px, 9vw, 135px); position: relative; z-index: 2; }
     .section-kicker { margin-bottom: 36px; color: var(--acid); }
     
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 20px;
+      grid-auto-flow: dense;
+      align-items: stretch;
+    }
     
     .card { 
+      grid-column: span 3;
       min-width: 0; 
       display: flex; 
       flex-direction: column; 
@@ -313,8 +320,14 @@
 
     .art::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.2); width: 65%; aspect-ratio: 1; border-radius: 50%; }
 
+    /* Hierarquia editorial dos projetos */
+    .card--featured { grid-column: span 8; }
+    .card--secondary { grid-column: span 4; }
+    .card--medium { grid-column: span 6; }
+    .card--compact { grid-column: span 3; }
+    .card--compact .art { height: clamp(190px, 20vw, 300px); }
+
     /* FraudWatch AI: painel de risco em tempo real */
-    .card--featured { grid-column: span 2; }
 
     .fraudwatch {
       background:
@@ -654,9 +667,18 @@
       .cursor-ring.is-active { width: 52px; height: 52px; background: var(--acid); border-color: var(--acid); mix-blend-mode: difference; } 
     }
 
-    /* --- RESPONSIVIDADE PARA CELULAR --- */
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 1050px) {
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card,
+      .card--featured,
+      .card--secondary,
+      .card--medium,
+      .card--compact { grid-column: span 1; }
+      .card--featured { grid-column: span 2; }
+    }
+
     @media (max-width: 900px) {
-      .cards { grid-template-columns: repeat(2, 1fr); }
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
       .about-copy { font-size: clamp(1.8rem, 5.5vw, 3rem); }
     }
@@ -790,7 +812,7 @@
           </div>
         </a>
         
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/real-time-phishing-fraud-detection" target="_blank" rel="noopener noreferrer">
+        <a class="card card--secondary gsap-reveal" href="https://github.com/lfferreiraa/real-time-phishing-fraud-detection" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto Real-Time Phishing &amp; Fraud Detection no GitHub">
           <div class="art security-lock" aria-hidden="true">
             <div class="lock-icon">
               <div class="lock-shackle"></div>
@@ -801,13 +823,13 @@
           </div>
           <div class="card-info">
             <div class="meta">Cybersecurity / MLOps / 2026</div>
-            <h3>Detecção de Phishing em Tempo Real</h3>
+            <h3>Real-Time Phishing &amp; Fraud Detection</h3>
             <p>Pipeline orientado a eventos com Machine Learning, Redpanda/Kafka, FastAPI, MLOps e observabilidade para gerar alertas de segurança.</p>
             <div class="arrow">↗</div>
           </div>
         </a>
 
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/ia-legisla-ao" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto Assistente de Legislação Brasileira no GitHub">
+        <a class="card card--medium gsap-reveal" href="https://github.com/lfferreiraa/ia-legisla-ao" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto Assistente de Legislação Brasileira no GitHub">
           <div class="art legal-rag" aria-hidden="true">
             <div class="legal-rag-mark"><b>RAG</b><span>Lex<br>Brasil</span></div>
           </div>
@@ -819,7 +841,17 @@
           </div>
         </a>
 
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/peptideos" target="_blank" rel="noopener noreferrer">
+        <a class="card card--medium gsap-reveal" href="https://github.com/lfferreiraa/Machine-Learning" target="_blank" rel="noopener noreferrer">
+          <div class="art ml"><b>ML</b></div>
+          <div class="card-info">
+            <div class="meta">Machine Learning / 2026</div>
+            <h3>Machine Learning</h3>
+            <p>Projeto para prever falhas em máquinas industriais a partir de dados de sensores.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <a class="card card--compact gsap-reveal" href="https://github.com/lfferreiraa/peptideos" target="_blank" rel="noopener noreferrer">
           <div class="art peptides" aria-hidden="true"></div>
           <div class="card-info">
             <div class="meta">Web / 2026</div>
@@ -829,7 +861,7 @@
           </div>
         </a>
 
-        <a class="card gsap-reveal" href="relatorio_AED_StudentsPerformance.pdf" download="relatorio_AED_StudentsPerformance.pdf" aria-label="Baixar relatório AED Students Performance em PDF">
+        <a class="card card--compact gsap-reveal" href="relatorio_AED_StudentsPerformance.pdf" download="relatorio_AED_StudentsPerformance.pdf" aria-label="Baixar relatório AED Students Performance em PDF">
           <div class="art aed"><b>AED</b></div>
           <div class="card-info">
             <div class="meta">Análise de dados / 2026</div>
@@ -839,7 +871,7 @@
           </div>
         </a>
 
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/banco-de-dados" target="_blank" rel="noopener noreferrer">
+        <a class="card card--compact gsap-reveal" href="https://github.com/lfferreiraa/banco-de-dados" target="_blank" rel="noopener noreferrer">
           <div class="art database"><b>SQL</b></div>
           <div class="card-info">
             <div class="meta">Banco de dados / 2026</div>
@@ -849,22 +881,12 @@
           </div>
         </a>
 
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/biosystem" target="_blank" rel="noopener noreferrer">
+        <a class="card card--compact gsap-reveal" href="https://github.com/lfferreiraa/biosystem" target="_blank" rel="noopener noreferrer">
           <div class="art biosystem"><b>Bio<br>System</b></div>
           <div class="card-info">
             <div class="meta">Web / 2026</div>
             <h3>BioSystem</h3>
             <p>Página web responsiva desenvolvida para apresentar soluções de forma estruturada e objetiva.</p>
-            <div class="arrow">↗</div>
-          </div>
-        </a>
-
-        <a class="card gsap-reveal" href="https://github.com/lfferreiraa/Machine-Learning" target="_blank" rel="noopener noreferrer">
-          <div class="art ml"><b>ML</b></div>
-          <div class="card-info">
-            <div class="meta">Machine Learning / 2026</div>
-            <h3>Machine Learning</h3>
-            <p>Projeto para prever falhas em máquinas industriais a partir de dados de sensores.</p>
             <div class="arrow">↗</div>
           </div>
         </a>
