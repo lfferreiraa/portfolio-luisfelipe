@@ -282,8 +282,12 @@
     .cards {
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 20px;
-      grid-auto-flow: dense;
+      grid-template-areas:
+        "fraud fraud fraud fraud fraud fraud fraud orbit orbit orbit orbit orbit"
+        "phishing phishing phishing phishing legal legal legal legal legal legal legal legal"
+        "machine machine machine machine machine peptides peptides peptides students students students students"
+        "database database database database database database database biosystem biosystem biosystem biosystem biosystem";
+      gap: clamp(18px, 1.7vw, 26px);
       align-items: stretch;
     }
     
@@ -326,6 +330,30 @@
     .card--medium { grid-column: span 6; }
     .card--compact { grid-column: span 3; }
     .card--compact .art { height: clamp(190px, 20vw, 300px); }
+
+    /* Composição editorial: cada projeto ocupa um peso diferente na grade. */
+    .cards .card:nth-child(1) { grid-area: fraud; }
+    .cards .card:nth-child(2) { grid-area: orbit; }
+    .cards .card:nth-child(3) { grid-area: phishing; }
+    .cards .card:nth-child(4) { grid-area: legal; }
+    .cards .card:nth-child(5) { grid-area: machine; }
+    .cards .card:nth-child(6) { grid-area: peptides; }
+    .cards .card:nth-child(7) { grid-area: students; }
+    .cards .card:nth-child(8) { grid-area: database; }
+    .cards .card:nth-child(9) { grid-area: biosystem; }
+
+    .cards .card:nth-child(1) .art,
+    .cards .card:nth-child(2) .art { height: clamp(300px, 30vw, 420px); }
+
+    .cards .card:nth-child(3) .art,
+    .cards .card:nth-child(4) .art { height: clamp(250px, 24vw, 340px); }
+
+    .cards .card:nth-child(5) .art,
+    .cards .card:nth-child(6) .art,
+    .cards .card:nth-child(7) .art { height: clamp(220px, 21vw, 300px); }
+
+    .cards .card:nth-child(8) .art,
+    .cards .card:nth-child(9) .art { height: clamp(240px, 23vw, 330px); }
 
     /* FraudWatch AI: painel de risco em tempo real */
 
@@ -432,6 +460,142 @@
 
     @keyframes fraudwatchSignal {
       to { transform: scaleY(.45); opacity: .45; }
+    }
+
+    /* ORBIT: command center de decisão e previsão */
+    .orbit-intelligence {
+      background:
+        radial-gradient(circle at 85% 10%, rgba(59, 84, 207, .34), transparent 34%),
+        linear-gradient(140deg, #071214 0%, #0d2423 58%, #111b2e 100%);
+      color: var(--ink);
+    }
+
+    .orbit-intelligence::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201, 250, 59, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 250, 59, .055) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(120deg, #000 15%, transparent 92%);
+    }
+
+    .orbit-intelligence::after {
+      width: min(62%, 410px);
+      border-color: rgba(201, 250, 59, .2);
+      box-shadow: 0 0 0 28px rgba(201, 250, 59, .025), 0 0 80px rgba(59, 84, 207, .2);
+      animation: orbitRadar 5s ease-in-out infinite;
+    }
+
+    .orbit-dashboard {
+      position: relative;
+      z-index: 2;
+      width: min(86%, 650px);
+      padding: clamp(15px, 2.4vw, 24px);
+      border: 1px solid rgba(201, 250, 59, .32);
+      border-radius: 8px;
+      background: rgba(7, 14, 16, .88);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .4);
+      backdrop-filter: blur(6px);
+    }
+
+    .orbit-dashboard-head,
+    .orbit-decision {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font: 10px var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .orbit-dashboard-head span:first-child { color: var(--acid); }
+
+    .orbit-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(242, 240, 235, .65);
+    }
+
+    .orbit-live i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 11px var(--acid);
+      animation: fraudwatchPulse 1.5s ease-in-out infinite;
+    }
+
+    .orbit-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 16px 0 14px;
+    }
+
+    .orbit-kpi {
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid rgba(242, 240, 235, .1);
+      background: rgba(242, 240, 235, .035);
+    }
+
+    .orbit-kpi small {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(242, 240, 235, .55);
+      font: 8px var(--mono);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .orbit-kpi strong {
+      color: var(--ink);
+      font: 700 clamp(.95rem, 2.1vw, 1.65rem)/1 var(--sans);
+      letter-spacing: -.04em;
+    }
+
+    .orbit-chart {
+      height: clamp(42px, 6vw, 70px);
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      padding: 8px 8px 0;
+      border-bottom: 1px solid rgba(201, 250, 59, .3);
+      background: linear-gradient(to top, rgba(201, 250, 59, .04), transparent);
+    }
+
+    .orbit-chart i {
+      flex: 1;
+      height: var(--h);
+      min-width: 4px;
+      background: linear-gradient(to top, #3b54cf, var(--acid));
+      opacity: .86;
+      transform-origin: bottom;
+      animation: orbitBars 2.8s ease-in-out infinite alternate;
+      animation-delay: calc(var(--d) * -.15s);
+    }
+
+    .orbit-decision {
+      margin-top: 12px;
+      color: rgba(242, 240, 235, .62);
+    }
+
+    .orbit-decision strong {
+      color: var(--acid);
+      font-weight: 500;
+    }
+
+    @keyframes orbitRadar {
+      0%, 100% { transform: scale(.94) rotate(-5deg); opacity: .35; }
+      50% { transform: scale(1.04) rotate(5deg); opacity: .8; }
+    }
+
+    @keyframes orbitBars {
+      to { transform: scaleY(.55); opacity: .5; }
     }
     
     /* Arte do card de Phishing: cadeado abrindo e fechando */
@@ -669,13 +833,16 @@
 
     /* --- RESPONSIVIDADE --- */
     @media (max-width: 1050px) {
-      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .card,
-      .card--featured,
-      .card--secondary,
-      .card--medium,
-      .card--compact { grid-column: span 1; }
-      .card--featured { grid-column: span 2; }
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+          "fraud fraud"
+          "orbit phishing"
+          "legal legal"
+          "machine peptides"
+          "students database"
+          "biosystem biosystem";
+      }
     }
 
     @media (max-width: 900px) {
@@ -694,8 +861,20 @@
       .listening-note { text-align: left; margin-top: 8px; } 
       .track-grid { grid-template-columns: 1fr; } 
       
-      .cards { grid-template-columns: 1fr; gap: 20px; }
-      .card--featured { grid-column: span 1; }
+      .cards {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "fraud"
+          "orbit"
+          "phishing"
+          "legal"
+          "machine"
+          "peptides"
+          "students"
+          "database"
+          "biosystem";
+        gap: 20px;
+      }
       .art { height: 240px; } 
       
       .footer-top { flex-direction: column; gap: 12px; } 
@@ -808,6 +987,32 @@
             <div class="meta">IA / Full stack / 2026</div>
             <h3>FraudWatch AI</h3>
             <p>Plataforma full-stack de detecção de fraudes em tempo real, com Machine Learning, FastAPI, React, PostgreSQL, WebSockets e explicações SHAP.</p>
+            <div class="arrow">↗</div>
+          </div>
+        </a>
+
+        <a class="card card--featured gsap-reveal" href="https://github.com/lfferreiraa/orbit" target="_blank" rel="noopener noreferrer" aria-label="Abrir o projeto ORBIT no GitHub">
+          <div class="art orbit-intelligence" aria-hidden="true">
+            <div class="orbit-dashboard">
+              <div class="orbit-dashboard-head">
+                <span>ORBIT / Executive command center</span>
+                <span class="orbit-live"><i></i>Pipeline ativo</span>
+              </div>
+              <div class="orbit-kpis">
+                <div class="orbit-kpi"><small>WAPE receita</small><strong>13,79%</strong></div>
+                <div class="orbit-kpi"><small>Previsão 30 dias</small><strong>R$ 1,12 mi</strong></div>
+                <div class="orbit-kpi"><small>Cobertura</small><strong>90,0%</strong></div>
+              </div>
+              <div class="orbit-chart">
+                <i style="--h:36%;--d:1"></i><i style="--h:52%;--d:2"></i><i style="--h:44%;--d:3"></i><i style="--h:68%;--d:4"></i><i style="--h:61%;--d:5"></i><i style="--h:79%;--d:6"></i><i style="--h:72%;--d:7"></i><i style="--h:92%;--d:8"></i><i style="--h:84%;--d:9"></i><i style="--h:100%;--d:10"></i>
+              </div>
+              <div class="orbit-decision"><span>Decision engine / Estoque</span><strong>+23 un. recomendadas</strong></div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="meta">Decision Intelligence / Power BI / 2026</div>
+            <h3>ORBIT</h3>
+            <p>Plataforma ponta a ponta que transforma dados em previsões, segmentação de clientes, otimização de estoque e recomendações auditáveis, com Python, FastAPI e Power BI.</p>
             <div class="arrow">↗</div>
           </div>
         </a>
