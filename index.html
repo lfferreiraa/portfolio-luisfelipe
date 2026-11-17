@@ -113,7 +113,7 @@
       min-height:max(720px,100svh);
       background:
         radial-gradient(60% 55% at 78% 30%,rgba(123,47,247,.28),transparent 70%),
-        radial-gradient(40% 40% at 10% 100%,rgba(225,29,46,.16),transparent 70%),
+        radial-gradient(34% 26% at 8% 72%,rgba(225,29,46,.16),transparent 100%),
         var(--black);
       color:var(--bone);display:flex;flex-direction:column;
     }
@@ -189,7 +189,7 @@
     @media (prefers-reduced-motion:no-preference){.dock{animation:dockIn .35s cubic-bezier(.2,.8,.2,1)}@keyframes dockIn{from{transform:translateY(24px);opacity:0}}}
 
     /* ---------- Projetos ---------- */
-    .projects-head{padding-block:clamp(90px,12vw,170px) clamp(36px,5vw,64px)}
+    .projects-head{padding-block:clamp(70px,9vw,130px) clamp(36px,5vw,64px)}
     .projects-head-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 40px;flex-wrap:wrap}
     .projects-head h2{font-size:clamp(4.4rem,15vw,15rem);line-height:.78;color:var(--red)}
     .projects-head p{font:italic 1.3rem/1.35 var(--serif);color:var(--muted);max-width:24ch;padding-bottom:.5em}
@@ -344,7 +344,7 @@
     .sweep::after{
       content:attr(data-text);position:absolute;inset:0;white-space:nowrap;
       -webkit-text-fill-color:currentColor;-webkit-text-stroke:0;color:inherit;
-      clip-path:inset(0 calc(100% - var(--p,0) * 100%) 0 0);
+      clip-path:inset(-.3em calc(100% - var(--p,0) * 100%) -.3em -.1em);
     }
     @media (prefers-reduced-motion:reduce){.sweep::after{display:none}}
 
@@ -457,13 +457,58 @@
       .index .meta{gap:14px}
     }
 
-    /* números do Sobre */
-    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:clamp(56px,7vw,96px) 0 0;border-top:2px solid rgba(8,7,10,.3)}
-    .stats div{display:flex;flex-direction:column-reverse;justify-content:flex-end;padding:22px 20px 4px 0;border-right:2px solid rgba(8,7,10,.3)}
-    .stats div+div{padding-left:20px}
-    .stats div:last-child{border-right:0}
-    .stats dd{margin:0;font:700 clamp(4rem,2rem + 6vw,8.5rem)/.85 var(--display);color:var(--black);font-variant-numeric:tabular-nums}
-    .stats dt{margin-top:10px;font:italic 1.125rem/1.3 var(--serif);color:#E4D8FF}
+    /* experiência atual: primeira seção depois do topo */
+    .experience{padding-block:clamp(90px,12vw,170px) clamp(64px,8vw,120px);background:var(--black);overflow:clip}
+    .exp-head{padding-bottom:clamp(28px,4vw,56px)}
+    .experience h2{font-size:clamp(4.4rem,15vw,15rem);line-height:.78;color:var(--red)}
+    .job{padding-top:clamp(24px,3vw,36px);border-top:2px solid var(--bone)}
+    .job-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,5vw,80px)}
+    .job-company{font:700 clamp(4.4rem,2rem + 9vw,12rem)/.8 var(--display);color:var(--bone);letter-spacing:-.01em;overflow-wrap:anywhere}
+    .job-now{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:.5em .85em;background:var(--red);color:var(--black);font:700 .875rem/1 var(--text)}
+    .job-dot{width:9px;height:9px;border-radius:50%;background:var(--black)}
+    @media (prefers-reduced-motion:no-preference){.job-dot{animation:jobPulse 1.6s ease-in-out infinite}@keyframes jobPulse{50%{opacity:.25;transform:scale(.7)}}}
+    .job-tags{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+    .job-tags li{padding:.45em .75em;border:1.5px solid var(--rule);font:700 .85rem/1 var(--text);transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+    .job-tags li:hover{background:var(--bone);color:var(--black);border-color:var(--bone)}
+
+    /* frentes de trabalho */
+    .job-grid{align-items:start}
+    .job-meta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:20px}
+    .job-meta .job-now{margin-top:0}
+    .job-meta .job-role{font:700 clamp(1.5rem,1rem + 1.4vw,2.3rem)/1 var(--display);color:var(--lilac)}
+    .fronts{list-style:none;margin:clamp(32px,4vw,56px) 0 0;padding:0}
+    .fronts li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:8px 28px;align-items:baseline;padding:20px 0;border-top:1px solid var(--rule);transition:background-color .2s ease}
+    .fronts li:last-child{border-bottom:1px solid var(--rule)}
+    .front-name{font:700 clamp(2.6rem,1.6rem + 3vw,4.6rem)/.85 var(--display);color:var(--bone);transition:color .2s ease}
+    .fronts li:hover .front-name{color:var(--red)}
+    .fronts p{font-size:var(--t-md);line-height:1.45;max-width:38ch}
+
+    /* editor de SQL */
+    .sql{margin:0;background:var(--panel);border:1.5px solid var(--rule);box-shadow:0 30px 80px rgba(0,0,0,.5);font-variant-numeric:tabular-nums}
+    .sql-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--rule);font:700 .8125rem/1 var(--text);color:var(--muted)}
+    .sql-dots{display:flex;gap:6px}
+    .sql-dots i{width:10px;height:10px;border-radius:50%;background:rgba(245,242,248,.18)}
+    .sql-dots i:first-child{background:var(--red)}
+    .sql-db{margin-left:auto;padding:.3em .55em;border:1px solid var(--rule);color:var(--lilac)}
+    .sql-code{margin:0;min-height:8.6em;padding:18px 18px 10px;font:500 clamp(.875rem,.8rem + .25vw,1rem)/1.6 ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;color:var(--bone);white-space:pre-wrap;overflow-wrap:anywhere}
+    .sql-code .k{color:var(--red);font-weight:700}
+    .sql-code .f{color:var(--lilac)}
+    .sql-caret{display:inline-block;width:.55em;height:1.1em;vertical-align:-.15em;background:var(--red)}
+    @media (prefers-reduced-motion:no-preference){.sql-caret{animation:caret 1s steps(1) infinite}@keyframes caret{50%{opacity:0}}}
+    .sql.is-done .sql-caret{display:none}
+    .sql-run{display:flex;justify-content:space-between;gap:12px;padding:10px 18px;border-top:1px solid var(--rule);font:700 .8125rem/1 var(--text);color:var(--muted)}
+    .sql.is-done .sql-status{color:var(--lilac)}
+    .sql-result{padding:6px 18px 18px;display:grid;gap:10px}
+    .sql-row{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:12px;align-items:center;font:500 .8125rem/1 ui-monospace,Menlo,Consolas,monospace;color:var(--muted)}
+    .sql-row i{display:block;height:14px;background:linear-gradient(90deg,var(--purple),var(--red));transform-origin:left;transform:scaleX(var(--w))}
+    @media (prefers-reduced-motion:no-preference){
+      .js .sql .sql-row i{transform:scaleX(0);transition:transform .9s var(--ease)}
+      .js .sql .sql-row:nth-child(2) i{transition-delay:.08s}
+      .js .sql .sql-row:nth-child(3) i{transition-delay:.16s}
+      .js .sql .sql-row:nth-child(4) i{transition-delay:.24s}
+      .js .sql.is-done .sql-row i{transform:scaleX(var(--w))}
+    }
+    .sql-cap{padding:12px 18px;border-top:1px solid var(--rule);font:italic .95rem/1.4 var(--serif);color:var(--muted)}
 
     /* entrada em círculo das seções de cor */
     @media (prefers-reduced-motion:no-preference){
@@ -490,10 +535,19 @@
       .index .meta{grid-column:2;grid-row:1}
     }
     @media (max-width:900px){
-      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .stats div:nth-child(2){border-right:0}
-      .stats div:nth-child(3){padding-left:0}
-      .stats div:nth-child(n+3){border-top:2px solid rgba(8,7,10,.3)}
+      .job-grid{grid-template-columns:1fr;align-items:start}
+      .fronts li{grid-template-columns:1fr}
+    }
+    .brand-short{display:none}
+    @media (max-width:520px){
+      .brand-full{display:none}
+      .brand-short{display:inline}
+      .nav{gap:12px}
+      .nav a{font-size:.875rem}
+    }
+    @media (max-width:380px){
+      .nav{gap:9px}
+      .nav a{font-size:.8125rem}
     }
     @media (max-width:720px){
       :root{--header:58px}
@@ -538,8 +592,9 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#inicio">Luis Ferreira</a>
+      <a class="brand" href="#inicio" aria-label="Luis Ferreira, voltar ao início"><span class="brand-full">Luis Ferreira</span><span class="brand-short" aria-hidden="true">LF</span></a>
       <nav class="nav" aria-label="Navegação principal">
+        <a href="#experiencia">Experiência</a>
         <a href="#projetos">Projetos</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
@@ -596,6 +651,50 @@
       </div>
     </section>
     </div>
+
+    <section id="experiencia" class="experience" aria-labelledby="exp-title">
+      <div class="container">
+        <div class="exp-head">
+          <h2 id="exp-title" data-wipe><span class="outline sweep" data-text="Experiência" data-sweep>Experiência</span></h2>
+        </div>
+        <article class="job" aria-labelledby="job-title">
+          <div class="job-grid">
+            <div class="job-main">
+              <div class="job-head" data-reveal>
+                <h3 class="job-company" id="job-title"><span data-scramble>Fitassul</span></h3>
+                <p class="job-meta"><span class="job-now"><span class="job-dot" aria-hidden="true"></span>Atual</span><span class="job-role">TI e análise de dados</span></p>
+              </div>
+              <ul class="fronts">
+                <li data-reveal style="--d:.1s">
+                  <span class="front-name">TI</span>
+                  <p>Cuido da tecnologia da empresa de forma geral, no dia a dia.</p>
+                </li>
+                <li data-reveal style="--d:.2s">
+                  <span class="front-name">Dados</span>
+                  <p>Analiso dados em bancos PostgreSQL com o pgAdmin, escrevendo consultas SQL para transformar registros em respostas.</p>
+                </li>
+              </ul>
+              <ul class="job-tags" data-reveal style="--d:.3s">
+                <li>pgAdmin</li><li>PostgreSQL</li><li>SQL</li><li>Análise de dados</li><li>Suporte de TI</li>
+              </ul>
+            </div>
+            <figure class="sql" data-reveal style="--d:.15s" aria-labelledby="sql-cap">
+              <div class="sql-bar"><span class="sql-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Editor de consultas</span><span class="sql-db">PostgreSQL</span></div>
+              <p class="sr-only">Consulta de exemplo: SELECT categoria, COUNT(*) AS total FROM registros GROUP BY categoria ORDER BY total DESC.</p>
+              <pre class="sql-code" aria-hidden="true"><code></code><span class="sql-caret" aria-hidden="true"></span></pre>
+              <div class="sql-run" aria-hidden="true"><span class="sql-status">Pronto para executar</span><span class="sql-time"></span></div>
+              <div class="sql-result" aria-hidden="true">
+                <div class="sql-row"><span>categoria_a</span><i style="--w:1"></i></div>
+                <div class="sql-row"><span>categoria_b</span><i style="--w:.74"></i></div>
+                <div class="sql-row"><span>categoria_c</span><i style="--w:.52"></i></div>
+                <div class="sql-row"><span>categoria_d</span><i style="--w:.31"></i></div>
+              </div>
+              <figcaption id="sql-cap" class="sql-cap">Ilustração de uma consulta de análise. Os nomes e as barras são exemplos, não dados reais da Fitassul.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <section id="projetos" aria-labelledby="projetos-title">
       <div class="container projects-head">
@@ -1047,17 +1146,11 @@
             <div><dt>Base</dt><dd>Brasil, com projetos e documentação publicados no GitHub</dd></div>
           </dl>
         </div>
-        <dl class="stats" data-draw>
-          <div><dt>projetos publicados</dt><dd data-count="10">10</dd></div>
-          <div><dt>especialidades</dt><dd data-count="6">6</dd></div>
-          <div><dt>tecnologias na stack principal</dt><dd data-count="7">7</dd></div>
-          <div><dt>conhecimentos listados</dt><dd data-count="16">16</dd></div>
-        </dl>
         <h3 class="skills-title">Conhecimentos</h3>
         <ul class="skills">
           <li>Python</li><li>Machine Learning</li><li>Power BI</li><li>Decision Intelligence</li>
           <li>RAG</li><li>FastAPI</li><li>React</li><li>PostgreSQL</li><li>SQL</li><li>Docker</li>
-          <li>Pandas</li><li>APIs</li><li>MLOps</li><li>Cybersecurity</li><li>Git e GitHub</li><li>Visualização de dados</li>
+          <li>Pandas</li><li>APIs</li><li>MLOps</li><li>Cybersecurity</li><li>Git e GitHub</li><li>pgAdmin</li><li>Visualização de dados</li>
         </ul>
         <div class="marquee" aria-hidden="true"><div class="marquee-row"></div><div class="marquee-row"></div></div>
       </div>
@@ -1332,8 +1425,12 @@
     function setupPin(){
       pinOn=!reduce.matches&&window.innerWidth>=1000&&window.innerHeight>=600;
       document.body.classList.toggle("pin-on",pinOn);
-      heroTitle.style.transformOrigin="";
-      if(!pinOn){heroTitle.style.transform="";heroTitle.style.opacity="";heroFade.forEach(el=>{el.style.opacity="";el.style.transform=""});flash.style.opacity="0";return}
+      if(!pinOn){heroTitle.style.transform="";heroTitle.style.opacity="";heroTitle.style.transformOrigin="";heroFade.forEach(el=>{el.style.opacity="";el.style.transform=""});flash.style.opacity="0";return}
+      pinOrigin();
+    }
+    function pinOrigin(){
+      if(!pinOn) return;
+      const prev=heroTitle.style.transform;heroTitle.style.transform="";
       // ponto de fuga: o espaço entre "IA" e "e", para atravessar o vão entre as letras
       const line=heroTitle.querySelectorAll(".line")[1],node=line.firstChild;
       if(node&&node.nodeType===3&&node.length>3){
@@ -1341,6 +1438,7 @@
         const rr=r.getBoundingClientRect(),hr=heroTitle.getBoundingClientRect();
         heroTitle.style.transformOrigin=`${(rr.left+rr.width/2-hr.left).toFixed(1)}px ${(rr.top+rr.height*.55-hr.top).toFixed(1)}px`;
       }
+      heroTitle.style.transform=prev;
     }
     function setupStack(){
       stackOn=!reduce.matches&&window.innerWidth>=1000;
@@ -1351,7 +1449,8 @@
       });
     }
     setupStack();
-    setTimeout(setupPin,introDelay+1700);
+    setupPin();
+    setTimeout(()=>{pinOrigin();requestScrollFrame()},introDelay+1700);
     let st=0;
     window.addEventListener("resize",()=>{clearTimeout(st);st=setTimeout(()=>{setupStack();setupPin();setupMarquee();requestScrollFrame()},150)});
     document.fonts?.ready.then(setupStack);
@@ -1513,6 +1612,49 @@
         });
       });
       mail.addEventListener("pointerleave",()=>chars.forEach(ch=>ch.style.transform=""));
+    }
+
+
+    /* ---------- Editor de SQL da experiência ---------- */
+    const sqlFig=document.querySelector(".sql");
+    if(sqlFig){
+      const code=sqlFig.querySelector("code"),status=sqlFig.querySelector(".sql-status"),time=sqlFig.querySelector(".sql-time");
+      const lines=[
+        [["k","SELECT"],["t"," categoria, "],["f","COUNT"],["t","(*) "],["k","AS"],["t"," total"]],
+        [["k","FROM"],["t"," registros"]],
+        [["k","GROUP BY"],["t"," categoria"]],
+        [["k","ORDER BY"],["t"," total "],["k","DESC"],["t",";"]]
+      ];
+      const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+      const render=n=>{
+        let left=n,html="";
+        lines.forEach((ln,li)=>{
+          ln.forEach(([c,t])=>{
+            if(left<=0) return;
+            const part=t.slice(0,left);left-=t.length;
+            html+=c==="t"?esc(part):`<span class="${c}">${esc(part)}</span>`;
+          });
+          if(left>0&&li<lines.length-1){html+="\n";left--}
+        });
+        code.innerHTML=html;
+      };
+      const total=lines.reduce((a,ln)=>a+ln.reduce((b,[,t])=>b+t.length,0),0)+lines.length-1;
+      const finish=()=>{render(total);status.textContent="Consulta executada: 4 linhas";time.textContent="ilustração";sqlFig.classList.add("is-done")};
+      let typed=false;
+      const type=()=>{
+        if(typed) return;typed=true;
+        if(reduce.matches){finish();return}
+        let n=0;
+        const step=()=>{
+          n+=1+(Math.random()<.3?1:0);
+          render(Math.min(n,total));
+          if(n<total) setTimeout(step,28+Math.random()*45);
+          else{status.textContent="Executando…";setTimeout(finish,520)}
+        };
+        step();
+      };
+      render(0);
+      new IntersectionObserver(([e],o)=>{if(e.isIntersecting){setTimeout(type,450);o.disconnect()}},{threshold:.45}).observe(sqlFig);
     }
 
     /* ---------- Fig. 1: k-means ao vivo ----------
